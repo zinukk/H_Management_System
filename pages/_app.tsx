@@ -5,6 +5,7 @@ import { QueryClient, QueryClientProvider } from 'react-query';
 import { RecoilRoot } from 'recoil';
 import global from 'styles/global';
 import theme from 'styles/theme';
+import Layout from '@src/components/common/Layout/Layout';
 
 const App = ({ Component, pageProps }: AppProps) => {
   const [queryClient] = useState(() => new QueryClient());
@@ -13,8 +14,10 @@ const App = ({ Component, pageProps }: AppProps) => {
     <QueryClientProvider client={queryClient}>
       <RecoilRoot>
         <ThemeProvider theme={theme}>
-          <Global styles={global} />
-          <Component {...pageProps} />
+          <Layout>
+            <Global styles={global} />
+            <Component {...pageProps} />
+          </Layout>
         </ThemeProvider>
       </RecoilRoot>
     </QueryClientProvider>
