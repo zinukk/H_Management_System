@@ -16,8 +16,8 @@ const Layout = ({ children }: layoutType) => {
 
 const StLayout = styled.div`
   position: relative;
-  padding-left: 220px;
-  padding-top: 75px;
+  padding-left: 11.4583vw;
+  padding-top: 3.9063vw;
   width: 100%;
 `;
 

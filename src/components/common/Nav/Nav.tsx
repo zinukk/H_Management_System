@@ -78,9 +78,9 @@ const TAB: Tab[] = [
 
 const StNav = styled.div`
   position: fixed;
-  top: 75px;
+  top: 3.9063vw;
   left: 0;
-  width: 220px;
+  width: 11.4583vw;
   height: 100vh;
   box-shadow: rgba(9, 30, 66, 0.25) 0px 4px 8px -2px, rgba(9, 30, 66, 0.08) 0px 0px 0px 1px;
 `;
@@ -89,9 +89,9 @@ const StTab = styled.div<{ isSame: boolean }>`
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  padding-left: 30px;
+  padding-left: 1.5625vw;
   width: 100%;
-  height: 70px;
+  height: 3.6458vw;
   color: ${({ theme, isSame }) => (isSame ? theme.color.white : theme.color.black)};
   background: ${({ theme, isSame }) => (isSame ? theme.color.sub : theme.color.white)};
   cursor: pointer;
@@ -103,8 +103,8 @@ const StTab = styled.div<{ isSame: boolean }>`
 `;
 
 const StName = styled.p`
-  margin-left: 20px;
-  font-size: 18px;
+  margin-left: 1.0417vw;
+  font-size: 0.9375vw;
 `;
 
 export default Nav;
