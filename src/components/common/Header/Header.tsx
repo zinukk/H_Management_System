@@ -45,16 +45,16 @@ const StHeader = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 25px;
+  padding: 1.3021vw;
   width: 100%;
-  height: 75px;
+  height: 3.9063vw;
   background: ${({ theme }) => theme.color.background};
   box-shadow: rgba(9, 30, 66, 0.25) 0px 4px 8px -2px, rgba(9, 30, 66, 0.08) 0px 0px 0px 1px;
   z-index: 100;
 `;
 
 const StLogo = styled.p`
-  font-size: 18px;
+  font-size: 0.9375vw;
   font-weight: 600;
 `;
 
@@ -65,11 +65,11 @@ const StDate = styled.div`
 `;
 
 const StToday = styled.p`
-  margin: 0 20px;
-  font-size: 16px;
+  margin: 0 1.0417vw;
+  font-size: 0.8333vw;
 `;
 const StTime = styled.p`
-  font-size: 16px;
+  font-size: 0.8333vw;
 `;
 
 export default Header;
