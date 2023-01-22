@@ -16,9 +16,10 @@ const Layout = ({ children }: layoutType) => {
 
 const StLayout = styled.div`
   position: relative;
-  padding-left: 11.4583vw;
-  padding-top: 3.9063vw;
+  padding: 4.9063vw 1vw 1vw 12.4523vw;
   width: 100%;
+  height: 100vh;
+  background: ${({ theme }) => theme.color.background};
 `;
 
 export default Layout;

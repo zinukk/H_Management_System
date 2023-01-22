@@ -48,7 +48,7 @@ const StHeader = styled.div`
   padding: 1.3021vw;
   width: 100%;
   height: 3.9063vw;
-  background: ${({ theme }) => theme.color.background};
+  background: ${({ theme }) => theme.color.white};
   box-shadow: rgba(9, 30, 66, 0.25) 0px 4px 8px -2px, rgba(9, 30, 66, 0.08) 0px 0px 0px 1px;
   z-index: 100;
 `;
