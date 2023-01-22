@@ -13,6 +13,8 @@ const Nav = () => {
 
   const currentPath = router.pathname;
 
+  console.log(currentPath);
+
   useEffect(() => {
     setTab(currentPath);
   }, [currentPath]);
@@ -23,22 +25,26 @@ const Nav = () => {
 
   return (
     <StNav>
-      {TAB.map(({ id, name, path }) => (
-        <StTab
-          key={id}
-          isSame={tab === path}
-          onClick={() => {
-            pageHandler(path);
-          }}>
-          <Image
-            src={tab === path ? `/assets/icons/tab/icons_active_${name}.png` : `/assets/icons/tab/icons_${name}.png`}
-            alt="탭아이콘"
-            width={20}
-            height={20}
-          />
-          <StName>{name}</StName>
-        </StTab>
-      ))}
+      {TAB.map(({ id, name, path }) => {
+        console.log(tab === path);
+
+        return (
+          <StTab
+            key={id}
+            isSame={tab === path}
+            onClick={() => {
+              pageHandler(path);
+            }}>
+            <Image
+              src={tab === path ? `/assets/icons/tab/icons_active_${name}.png` : `/assets/icons/tab/icons_${name}.png`}
+              alt="탭아이콘"
+              width={20}
+              height={20}
+            />
+            <StName isSame={tab === path}>{name}</StName>
+          </StTab>
+        );
+      })}
     </StNav>
   );
 };
@@ -82,6 +88,7 @@ const StNav = styled.div`
   left: 0;
   width: 11.4583vw;
   height: 100vh;
+  background: ${({ theme }) => theme.color.white};
   box-shadow: rgba(9, 30, 66, 0.25) 0px 4px 8px -2px, rgba(9, 30, 66, 0.08) 0px 0px 0px 1px;
 `;
 
@@ -92,7 +99,6 @@ const StTab = styled.div<{ isSame: boolean }>`
   padding-left: 1.5625vw;
   width: 100%;
   height: 3.6458vw;
-  color: ${({ theme, isSame }) => (isSame ? theme.color.white : theme.color.black)};
   background: ${({ theme, isSame }) => (isSame ? theme.color.sub : theme.color.white)};
   cursor: pointer;
 
@@ -102,7 +108,8 @@ const StTab = styled.div<{ isSame: boolean }>`
   }
 `;
 
-const StName = styled.p`
+const StName = styled.p<{ isSame: boolean }>`
+  color: ${({ theme, isSame }) => (isSame ? theme.color.white : theme.color.black)};
   margin-left: 1.0417vw;
   font-size: 0.9375vw;
 `;
