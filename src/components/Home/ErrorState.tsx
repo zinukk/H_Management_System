@@ -7,7 +7,7 @@ const ErrorState = () => {
 
 const StErrorState = styled.div`
   width: 100%;
-  grid-area: errorState;
+  grid-area: 4 / 3 / 6 / 4;
   background: ${({ theme }) => theme.color.white};
   border: 1px solid black;
 `;
