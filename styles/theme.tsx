@@ -10,6 +10,13 @@ const color = {
   major: '#406dfa',
   minor: '#299d38',
   stroke: '#e2e6f9',
+  gray400: '#E0e0e0',
+  gray500: '#A9ABB8',
+  gray600: '#858899',
+  gray700: '#525463',
+  gray800: '#3E404C',
+  gray900: '#2B2D36',
+  gray950: '#2B2D36',
 };
 
 const theme: Theme = {
@@ -23,6 +30,13 @@ const theme: Theme = {
     major: color.major,
     minor: color.minor,
     stroke: color.stroke,
+    gray400: color.gray400,
+    gray500: color.gray500,
+    gray600: color.gray600,
+    gray700: color.gray700,
+    gray800: color.gray800,
+    gray900: color.gray900,
+    gray950: color.gray950,
   },
 };
 

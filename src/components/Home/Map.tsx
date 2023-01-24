@@ -7,7 +7,7 @@ const Map = () => {
 
 const StMap = styled.div`
   width: 100%;
-  grid-area: map;
+  grid-area: 2 / 4 / 6 / 5;
   background: ${({ theme }) => theme.color.white};
   border: 1px solid black;
 `;

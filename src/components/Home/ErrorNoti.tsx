@@ -7,7 +7,7 @@ const ErrorNoti = () => {
 
 const StErrorNoti = styled.div`
   width: 100%;
-  grid-area: errorNoti;
+  grid-area: 4 / 1 / 6 / 3;
   background: ${({ theme }) => theme.color.white};
   border: 1px solid black;
 `;

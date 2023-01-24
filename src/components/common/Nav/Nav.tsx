@@ -13,8 +13,6 @@ const Nav = () => {
 
   const currentPath = router.pathname;
 
-  console.log(currentPath);
-
   useEffect(() => {
     setTab(currentPath);
   }, [currentPath]);
@@ -26,8 +24,6 @@ const Nav = () => {
   return (
     <StNav>
       {TAB.map(({ id, name, path }) => {
-        console.log(tab === path);
-
         return (
           <StTab
             key={id}
