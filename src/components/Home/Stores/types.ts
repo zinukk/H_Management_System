@@ -1,4 +1,5 @@
 export type IStore = {
+  slice(arg0: number, arg1: number): [];
   created_at: string;
   descirbe: string;
   error: string;
@@ -18,7 +19,7 @@ export type IStore = {
   stay: string;
   store_lat: string;
   store_lng: string;
-  total?: number;
+  total: number;
   wifi_id: string;
   wifi_pw: string;
 };

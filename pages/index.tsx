@@ -2,7 +2,7 @@ import styled from '@emotion/styled';
 import homeAPI from '@src/api/home';
 import ErrorNoti from '@src/components/Home/ErrorNoti';
 import ErrorState from '@src/components/Home/ErrorState';
-import Map from '@src/components/Home/Map';
+import KakaoMap from '@src/components/Home/Stores/KakaoMap/KakaoMap';
 import Serving from '@src/components/Home/Serving/Serving';
 import Stores from '@src/components/Home/Stores/Stores';
 
@@ -24,7 +24,7 @@ const Home = ({ serving, stores }: any) => {
     <StHome>
       <Serving serving={serving.all} />
       <Stores stores={stores.stores} />
-      <Map />
+      <KakaoMap stores={stores.stores} />
       <ErrorNoti />
       <ErrorState />
     </StHome>

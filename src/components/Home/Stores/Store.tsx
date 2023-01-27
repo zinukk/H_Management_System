@@ -20,8 +20,8 @@ const Store = ({ store }: IProps) => {
 
   const STATISTICS = [
     { id: 0, title: '서빙횟수', count: serving_count },
-    { id: 0, title: '에러횟수', count: error_count },
-    { id: 0, title: '주행효율', count: performance },
+    { id: 1, title: '에러횟수', count: error_count },
+    { id: 2, title: '주행효율', count: performance },
   ];
 
   const widthHandler = (count: number, total: number) => {
