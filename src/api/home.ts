@@ -5,6 +5,9 @@ const homeAPI = {
   getServing: () => {
     return client.get(`${API.getServing}`);
   },
+  getStores: () => {
+    return client.get(`${API.getStores}`);
+  },
 };
 
 export default homeAPI;

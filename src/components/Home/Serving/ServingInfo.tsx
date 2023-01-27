@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 import React from 'react';
-import { serving } from '../types';
+import { serving } from './types';
 import { RiArrowDownSFill, RiArrowUpSFill } from 'react-icons/ri';
 
 interface IProps {
@@ -18,10 +18,6 @@ const ServingInfo = ({ data }: IProps) => {
     performance,
     performance_before,
   } = data;
-
-  const calcComparedPrev = (cur: string, prev: string) => {
-    return Math.abs(parseInt(((cur - prev) / prev) * 100));
-  };
 
   const SERVING_INFO = [
     {
@@ -53,6 +49,10 @@ const ServingInfo = ({ data }: IProps) => {
       prevValue: Number(performance_before) * 100,
     },
   ];
+
+  const calcComparedPrev = (cur: number, prev: number) => {
+    return Math.abs(parseInt(((cur - prev) / prev) * 100));
+  };
 
   return (
     <StServingInfo>

@@ -4,23 +4,26 @@ import ErrorNoti from '@src/components/Home/ErrorNoti';
 import ErrorState from '@src/components/Home/ErrorState';
 import Map from '@src/components/Home/Map';
 import Serving from '@src/components/Home/Serving/Serving';
-import Stores from '@src/components/Home/Stores';
+import Stores from '@src/components/Home/Stores/Stores';
 
 export async function getStaticProps() {
   const serving = await homeAPI.getServing();
 
+  const stores = await homeAPI.getStores();
+
   return {
     props: {
       serving: serving,
+      stores: stores,
     },
   };
 }
 
-const Home = ({ serving }: any) => {
+const Home = ({ serving, stores }: any) => {
   return (
     <StHome>
       <Serving serving={serving.all} />
-      <Stores />
+      <Stores stores={stores.stores} />
       <Map />
       <ErrorNoti />
       <ErrorState />

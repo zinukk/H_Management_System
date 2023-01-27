@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 import React, { useState } from 'react';
-import { IServing } from '../types';
+import { IServing } from './types';
 import ServingInfo from './ServingInfo';
 
 interface IProps {
