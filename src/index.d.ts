@@ -1,13 +1,18 @@
 interface Color {
+  [index: string]: string;
   main: string;
   sub: string;
   background: string;
   white: string;
   black: string;
+  blue: string;
+  blue100: string;
   critical: string;
   major: string;
   minor: string;
   stroke: string;
+  light: string;
+  gray300: string;
   gray400: string;
   gray500: string;
   gray600: string;
