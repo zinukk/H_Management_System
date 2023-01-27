@@ -43,7 +43,6 @@ const Store = ({ store }: IProps) => {
       <StBody>
         <StStatusBarBox>
           {STATUS.map(({ id, color, count }) => {
-            console.log(widthHandler(count, total));
             return <StStatusBar key={id} color={color} style={{ width: widthHandler(count, total) }} />;
           })}
         </StStatusBarBox>

@@ -8,6 +8,9 @@ const homeAPI = {
   getStores: () => {
     return client.get(`${API.getStores}`);
   },
+  getErrorStatus: () => {
+    return client.get(`${API.getErrorStatus}`);
+  },
 };
 
 export default homeAPI;
