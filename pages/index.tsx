@@ -1,8 +1,8 @@
 import styled from '@emotion/styled';
 import homeAPI from '@src/api/home';
 import ErrorNoti from '@src/components/Home/ErrorNoti';
-import ErrorState from '@src/components/Home/ErrorState';
-import KakaoMap from '@src/components/Home/Stores/KakaoMap/KakaoMap';
+import ErrorStatus from '@src/components/Home/ErrorStatus/ErrorStatus';
+import KakaoMap from '@src/components/Home/KakaoMap/KakaoMap';
 import Serving from '@src/components/Home/Serving/Serving';
 import Stores from '@src/components/Home/Stores/Stores';
 
@@ -11,22 +11,25 @@ export async function getStaticProps() {
 
   const stores = await homeAPI.getStores();
 
+  const errorStatus = await homeAPI.getErrorStatus();
+
   return {
     props: {
       serving: serving,
       stores: stores,
+      errorStatus: errorStatus,
     },
   };
 }
 
-const Home = ({ serving, stores }: any) => {
+const Home = ({ serving, stores, errorStatus }: any) => {
   return (
     <StHome>
       <Serving serving={serving.all} />
       <Stores stores={stores.stores} />
       <KakaoMap stores={stores.stores} />
       <ErrorNoti />
-      <ErrorState />
+      <ErrorStatus errorStatus={errorStatus.all} />
     </StHome>
   );
 };
