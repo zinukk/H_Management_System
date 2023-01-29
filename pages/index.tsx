@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 import homeAPI from '@src/api/home';
-import ErrorNoti from '@src/components/Home/ErrorNoti';
+import ErrorNoti from '@src/components/Home/ErrorNoti/ErrorNoti';
 import ErrorStatus from '@src/components/Home/ErrorStatus/ErrorStatus';
 import KakaoMap from '@src/components/Home/KakaoMap/KakaoMap';
 import Serving from '@src/components/Home/Serving/Serving';

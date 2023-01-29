@@ -5,7 +5,6 @@ export const baseURL: string = process.env.NEXT_PUBLIC_BASE_URL as string;
 const client = axios.create({ baseURL });
 
 client.interceptors.response.use((res: AxiosResponse) => {
-  console.log(res);
   try {
     if (res.status === 200) {
       return res.data;
