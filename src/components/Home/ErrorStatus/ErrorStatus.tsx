@@ -1,23 +1,20 @@
 import styled from '@emotion/styled';
 import React from 'react';
+import { IStatus } from './types';
 
 interface IProps {
-  errorStatus: any;
+  errorStatus: IStatus;
 }
 
 const ErrorStatus = ({ errorStatus }: IProps) => {
   const { critical, major, minor } = errorStatus;
 
-  const totalCountHandler = (data: any) => {
-    let sum = 0;
-
-    for (const key in data) if (data[key] !== 'all') sum += data[key];
-
-    return sum;
-  };
+  const totalCount = Object.values(errorStatus)
+    .filter((cur) => typeof cur === 'number')
+    .reduce((a, b) => a + b);
 
   const ERROR_STATUS = [
-    { id: 0, error: 'All', color: 'stroke', count: totalCountHandler(errorStatus) },
+    { id: 0, error: 'All', color: 'stroke', count: totalCount },
     { id: 1, error: 'Critical', color: 'critical', count: critical },
     { id: 2, error: 'Major', color: 'major', count: major },
     { id: 3, error: 'Minor', color: 'minor', count: minor },
@@ -49,7 +46,7 @@ const StErrorStatus = styled.div`
   height: 100%;
   grid-area: 4 / 3 / 6 / 4;
   background: ${({ theme }) => theme.color.white};
-  border-radius: 5px;
+  border-radius: 0.2604vw;
   box-shadow: rgba(99, 99, 99, 0.2) 0vw 0.1042vw 0.4167vw 0vw;
 `;
 
@@ -59,15 +56,19 @@ const StHeader = styled.p`
 `;
 
 const StBody = styled.div`
-  margin-top: 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: column;
+  margin-top: 1.5625vw;
   width: 100%;
+  height: 80%;
 `;
 
 const StStatusBox = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin: 20px 0;
   width: 100%;
 `;
 
@@ -80,30 +81,30 @@ const StStatusType = styled.div`
 `;
 
 const StColor = styled.div<{ color: string }>`
-  width: 7px;
-  height: 7px;
+  width: 0.5646vw;
+  height: 0.5646vw;
   border-radius: 50%;
   background: ${({ theme, color }) => theme.color[color]};
 `;
 
 const StError = styled.p`
-  font-size: 13px;
+  font-size: 0.8771vw;
 `;
 
 const StCountBox = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  padding-top: 2px;
-  width: 25px;
-  height: 25px;
+  padding-top: 0.1042vw;
+  width: 1.3021vw;
+  height: 1.3021vw;
   background: ${({ theme }) => theme.color.gray400};
   border-radius: 50%;
 `;
 
 const StCount = styled.p`
   color: ${({ theme }) => theme.color.gray700};
-  font-size: 13px;
+  font-size: 0.6771vw;
   font-weight: 600;
 `;
 

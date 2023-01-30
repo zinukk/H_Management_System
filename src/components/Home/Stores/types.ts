@@ -24,8 +24,6 @@ export type IStore = {
   wifi_pw: string;
 };
 
-// export type IServing = {
-//   day: serving;
-//   week: serving;
-//   month: serving;
-// };
+export type IStoreResponse = {
+  stores: IStore;
+};
