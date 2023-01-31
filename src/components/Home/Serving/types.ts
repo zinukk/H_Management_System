@@ -18,3 +18,8 @@ export type IServing = {
   week: serving;
   month: serving;
 };
+
+export type IServingResponse = {
+  all: IServing;
+  // data: IServing;
+};

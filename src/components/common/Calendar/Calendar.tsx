@@ -3,9 +3,10 @@ import DatePicker from 'react-datepicker';
 import ko from 'date-fns/locale/ko';
 import 'react-datepicker/dist/react-datepicker.css';
 import { Dispatch, SetStateAction } from 'react';
+import { convertDate } from '@src/utils/convertDate';
 
 interface IProps {
-  event: () => void;
+  event: any;
   startDate: Date;
   endDate: Date;
   setStartDate: Dispatch<SetStateAction<Date>>;
@@ -13,6 +14,11 @@ interface IProps {
 }
 
 const Calendar = ({ event, startDate, setStartDate, endDate, setEndDate }: IProps) => {
+  const dates = {
+    start_date: convertDate(startDate),
+    end_date: convertDate(endDate),
+  };
+
   return (
     <StCalendar>
       <StCustomDatePicker
@@ -34,7 +40,12 @@ const Calendar = ({ event, startDate, setStartDate, endDate, setEndDate }: IProp
           setEndDate(date);
         }}
       />
-      <StSubmitBtn onClick={event}>검색</StSubmitBtn>
+      <StSubmitBtn
+        onClick={() => {
+          event(dates);
+        }}>
+        검색
+      </StSubmitBtn>
     </StCalendar>
   );
 };

@@ -12,6 +12,7 @@ interface Color {
   minor: string;
   stroke: string;
   light: string;
+  gray200: string;
   gray300: string;
   gray400: string;
   gray500: string;

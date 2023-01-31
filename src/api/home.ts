@@ -11,6 +11,12 @@ const homeAPI = {
   getErrorStatus: () => {
     return client.get(`${API.getErrorStatus}`);
   },
+  getAllErrors: () => {
+    return client.get(`${API.getAllErrors}`);
+  },
+  postDates: (data: any) => {
+    return client.post(`${API.postDates}`, data);
+  },
 };
 
 export default homeAPI;
