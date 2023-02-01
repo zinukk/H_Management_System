@@ -2,7 +2,7 @@ import styled from '@emotion/styled';
 import storesAPI from '@src/api/stores';
 import Dropdown from '@src/components/common/Dropdown/Dropdown';
 import { IStore, IStoreResponse } from '@src/components/Home/AllStores/types';
-import StoreMap from '@src/components/Stores/StoreMap';
+import Store from '@src/components/Stores/Store';
 import React from 'react';
 
 export async function getStaticProps() {
@@ -29,7 +29,7 @@ const Stores = ({ stores }: IProps) => {
       </StHeader>
       <StBody>
         {stores.stores.map((store: IStore) => (
-          <StoreMap key={store.map_id} store={store} />
+          <Store key={store.map_id} store={store} />
         ))}
       </StBody>
     </StStores>
