@@ -20,6 +20,7 @@ const StLayout = styled.div`
   width: 100%;
   height: 100vh;
   background: ${({ theme }) => theme.color.background};
+  overflow: scroll;
 `;
 
 export default Layout;

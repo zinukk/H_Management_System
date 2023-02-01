@@ -53,8 +53,8 @@ const TAB: Tab[] = [
   },
   {
     id: 2,
-    name: 'Store',
-    path: '/store',
+    name: 'Stores',
+    path: '/stores',
   },
   {
     id: 3,
