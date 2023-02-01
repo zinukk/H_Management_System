@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 import Image from 'next/image';
 import React from 'react';
-import { IStore } from '../Home/Stores/types';
+import { IStore } from '../Home/AllStores/types';
 
 interface IProps {
   store: IStore;
