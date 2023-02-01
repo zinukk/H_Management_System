@@ -1,4 +1,5 @@
 export type IStore = {
+  [x: string]: any;
   slice(arg0: number, arg1: number): [];
   created_at: string;
   descirbe: string;

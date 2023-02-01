@@ -1,7 +1,7 @@
 import React from 'react';
 
 const Store = () => {
-  return <div>매장페이지</div>;
+  return <div></div>;
 };
 
 export default Store;
