@@ -1,4 +1,4 @@
-export type serving = {
+export type statistics = {
   avg_serving_time: string;
   avg_serving_time_before: string;
   created_at: string;
@@ -13,13 +13,12 @@ export type serving = {
   serving_count_before: string;
 };
 
-export type IServing = {
-  day: serving;
-  week: serving;
-  month: serving;
+export type IStatistics = {
+  day: statistics;
+  week: statistics;
+  month: statistics;
 };
 
 export type IServingResponse = {
-  all: IServing;
-  // data: IServing;
+  all: IStatistics;
 };

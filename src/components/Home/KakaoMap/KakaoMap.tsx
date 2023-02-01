@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 import React, { useState } from 'react';
-import { IStore } from '../Stores/types';
+import { IStore } from '../AllStores/types';
 import { Map, MapMarker, CustomOverlayMap } from 'react-kakao-maps-sdk';
 import { IMap } from './types';
 

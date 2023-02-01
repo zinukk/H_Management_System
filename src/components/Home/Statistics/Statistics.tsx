@@ -1,13 +1,13 @@
 import styled from '@emotion/styled';
 import React, { useState } from 'react';
-import { IServing } from './types';
-import ServingInfo from './ServingInfo';
+import { IStatistics } from './types';
+import StatisticsInfo from './StatisticsInfo';
 
 interface IProps {
-  serving: IServing;
+  serving: IStatistics;
 }
 
-const Serving = ({ serving }: IProps) => {
+const Statistics = ({ serving }: IProps) => {
   const { day, week, month } = serving;
 
   const [tab, setTab] = useState<string>('일간');
@@ -17,13 +17,13 @@ const Serving = ({ serving }: IProps) => {
   };
 
   const DATE_TAB: any = {
-    일간: <ServingInfo data={day} />,
-    주간: <ServingInfo data={week} />,
-    월간: <ServingInfo data={month} />,
+    일간: <StatisticsInfo data={day} />,
+    주간: <StatisticsInfo data={week} />,
+    월간: <StatisticsInfo data={month} />,
   };
 
   return (
-    <StServing>
+    <StStatistics>
       <StHeader>
         {Object.keys(DATE_TAB).map((cur, idx) => (
           <StTabBtn
@@ -37,11 +37,11 @@ const Serving = ({ serving }: IProps) => {
         ))}
       </StHeader>
       <StBody>{DATE_TAB[tab]}</StBody>
-    </StServing>
+    </StStatistics>
   );
 };
 
-const StServing = styled.div`
+const StStatistics = styled.div`
   width: 100%;
   grid-area: 1 / 1 / 2 / 5;
 `;
@@ -69,4 +69,4 @@ const StTabBtn = styled.button<{ isCurrentTab: boolean }>`
   cursor: pointer;
 `;
 
-export default Serving;
+export default Statistics;

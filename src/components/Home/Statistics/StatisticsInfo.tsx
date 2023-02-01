@@ -1,13 +1,13 @@
 import styled from '@emotion/styled';
 import React from 'react';
-import { serving } from './types';
+import { statistics } from './types';
 import { RiArrowDownSFill, RiArrowUpSFill } from 'react-icons/ri';
 
 interface IProps {
-  data: serving;
+  data: statistics;
 }
 
-const ServingInfo = ({ data }: IProps) => {
+const StatisticsInfo = ({ data }: IProps) => {
   const {
     serving_count,
     serving_count_before,
@@ -19,7 +19,7 @@ const ServingInfo = ({ data }: IProps) => {
     performance_before,
   } = data;
 
-  const SERVING_INFO = [
+  const STATISTICS_INFO = [
     {
       id: 1,
       title: '서빙횟수',
@@ -31,7 +31,7 @@ const ServingInfo = ({ data }: IProps) => {
       id: 2,
       title: '이동거리',
       unit: 'km',
-      currentValue: parseInt(move_distance),
+      currentValue: move_distance,
       prevValue: move_distance_before,
     },
     {
@@ -45,19 +45,19 @@ const ServingInfo = ({ data }: IProps) => {
       id: 4,
       title: '주행효율',
       unit: '%',
-      currentValue: Number(performance) * 100,
-      prevValue: Number(performance_before) * 100,
+      currentValue: performance,
+      prevValue: performance_before,
     },
   ];
 
-  const calcComparedPrev = (cur: number, prev: number) => {
-    return Math.abs(parseInt(((cur - prev) / prev) * 100));
+  const calcComparedPrev = (cur: string, prev: string) => {
+    return Math.abs(((+cur - +prev) / +prev) * 100);
   };
 
   return (
-    <StServingInfo>
+    <StStatisticsInfo>
       <StBody>
-        {SERVING_INFO.map(({ id, title, unit, currentValue, prevValue }) => (
+        {STATISTICS_INFO.map(({ id, title, unit, currentValue, prevValue }) => (
           <StInfoBox key={id}>
             <StCurrentBox>
               <StCurrent>
@@ -73,11 +73,11 @@ const ServingInfo = ({ data }: IProps) => {
           </StInfoBox>
         ))}
       </StBody>
-    </StServingInfo>
+    </StStatisticsInfo>
   );
 };
 
-const StServingInfo = styled.div`
+const StStatisticsInfo = styled.div`
   margin-top: 1vw;
   width: 100%;
   height: 100%;
@@ -137,4 +137,4 @@ const StPercentage = styled.p`
   font-size: 0.8333vw;
 `;
 
-export default ServingInfo;
+export default StatisticsInfo;

@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 import storesAPI from '@src/api/stores';
-import { IStore, IStoreResponse } from '@src/components/Home/Stores/types';
+import { IStore, IStoreResponse } from '@src/components/Home/AllStores/types';
 import StoreMap from '@src/components/Stores/StoreMap';
 import React from 'react';
 

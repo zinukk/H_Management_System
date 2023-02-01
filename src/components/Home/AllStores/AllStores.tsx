@@ -7,7 +7,7 @@ interface IProps {
   stores: IStore;
 }
 
-const Stores = ({ stores }: IProps) => {
+const AllStores = ({ stores }: IProps) => {
   const organizedStores = (stores: any) => {
     return stores.slice(0, 3).map((cur: IStore) => ({
       ...cur,
@@ -106,4 +106,4 @@ const StBody = styled.div`
   width: 100%;
 `;
 
-export default Stores;
+export default AllStores;
