@@ -51,7 +51,7 @@ const StatisticsInfo = ({ data }: IProps) => {
   ];
 
   const calcComparedPrev = (cur: string, prev: string) => {
-    return Math.abs(((+cur - +prev) / +prev) * 100);
+    return Math.abs(Math.floor(((+cur - +prev) / +prev) * 100));
   };
 
   return (
@@ -125,11 +125,11 @@ const StPercentageBox = styled.div<{ isOver: boolean }>`
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 3.125vw;
-  height: 3.125vw;
-  border-radius: 3.125vw;
+  width: 4.125vw;
+  height: 4.125vw;
+  border-radius: 50%;
   border: ${({ theme, isOver }) =>
-    isOver ? `0.2604vw solid ${theme.color.major}` : `0.2604vw solid ${theme.color.critical}`};
+    isOver ? `0.3604vw solid ${theme.color.major}` : `0.3604vw solid ${theme.color.critical}`};
   color: ${({ theme, isOver }) => (isOver ? theme.color.major : theme.color.critical)};
 `;
 
