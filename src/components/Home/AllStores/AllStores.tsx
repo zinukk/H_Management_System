@@ -45,10 +45,7 @@ const STATUS = [
 ];
 
 const StStores = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-direction: column;
+  position: relative;
   padding: 1vw;
   width: 100%;
   grid-area: 2 / 1 / 4 / 4;
@@ -99,6 +96,7 @@ const StStatus = styled.p`
 `;
 
 const StBody = styled.div`
+  margin-top: 2vw;
   display: flex;
   justify-content: space-between;
   align-items: center;
