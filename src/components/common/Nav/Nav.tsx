@@ -11,15 +11,19 @@ const Nav = () => {
 
   const [tab, setTab] = useRecoilState(tabState);
 
-  const currentPath = router.pathname;
+  const currentPath = router.pathname.split('/')[1];
 
-  useEffect(() => {
-    setTab(currentPath);
-  }, [currentPath]);
+  const tabHandler = () => {
+    currentPath === '' ? setTab('/') : setTab(`/${currentPath}`);
+  };
 
   const pageHandler = (path: string) => {
     router.push(path);
   };
+
+  useEffect(() => {
+    tabHandler();
+  }, [currentPath]);
 
   return (
     <StNav>
