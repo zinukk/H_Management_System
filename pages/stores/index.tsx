@@ -1,5 +1,6 @@
 import styled from '@emotion/styled';
 import storesAPI from '@src/api/stores';
+import Dropdown from '@src/components/common/Dropdown/Dropdown';
 import { IStore, IStoreResponse } from '@src/components/Home/AllStores/types';
 import StoreMap from '@src/components/Stores/StoreMap';
 import React from 'react';
@@ -19,9 +20,13 @@ interface IProps {
 }
 
 const Stores = ({ stores }: IProps) => {
+  console.log(stores.stores);
+
   return (
     <StStores>
-      <StHeader>헤더입니다</StHeader>
+      <StHeader>
+        <Dropdown stores={stores.stores} />
+      </StHeader>
       <StBody>
         {stores.stores.map((store: IStore) => (
           <StoreMap key={store.map_id} store={store} />
@@ -36,7 +41,8 @@ const StStores = styled.div`
 `;
 
 const StHeader = styled.div`
-  width: 100%;
+  margin-bottom: 1vw;
+  width: fit-content;
 `;
 
 const StBody = styled.div`
