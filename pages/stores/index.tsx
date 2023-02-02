@@ -1,9 +1,12 @@
+import React, { useEffect } from 'react';
+import { useRecoilState, useSetRecoilState } from 'recoil';
 import styled from '@emotion/styled';
 import storesAPI from '@src/api/stores';
 import Dropdown from '@src/components/common/Dropdown/Dropdown';
 import { IStore, IStoreResponse } from '@src/components/Home/AllStores/types';
-import StoreMap from '@src/components/Stores/StoreMap';
-import React from 'react';
+import Store from '@src/components/Stores/Store';
+import { storeNameState } from '@src/store/storeNameState';
+import { useRouter } from 'next/router';
 
 export async function getStaticProps() {
   const response = await storesAPI.getStores();
@@ -20,16 +23,27 @@ interface IProps {
 }
 
 const Stores = ({ stores }: IProps) => {
-  console.log(stores.stores);
+  const router = useRouter();
+
+  const setStoreName = useSetRecoilState(storeNameState);
+
+  const pageHandler = (storeName: string, storeId: string) => {
+    setStoreName(storeName);
+    router.push(`/stores/${storeId}`);
+  };
+
+  useEffect(() => {
+    setStoreName('전체매장');
+  }, []);
 
   return (
     <StStores>
       <StHeader>
-        <Dropdown stores={stores.stores} />
+        <Dropdown event={pageHandler} dataList={stores.stores} />
       </StHeader>
       <StBody>
         {stores.stores.map((store: IStore) => (
-          <StoreMap key={store.map_id} store={store} />
+          <Store key={store.map_id} store={store} event={pageHandler} />
         ))}
       </StBody>
     </StStores>
