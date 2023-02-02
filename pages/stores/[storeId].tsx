@@ -44,7 +44,7 @@ const Store = ({ store, stores }: any) => {
       <StoreInfo store={store.stores} storeList={stores.stores} />
       <PeakTime servingCount={store.week} />
       <MapNode />
-      <AvailableRobot />
+      <AvailableRobot robots={store.robot_counts[0]} />
     </StStore>
   );
 };

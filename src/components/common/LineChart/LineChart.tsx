@@ -40,9 +40,10 @@ const LineChart = ({ chartData }: IProps) => {
     labels: times,
     datasets: [
       {
+        label: '서빙 횟수',
         data: counts,
         borderColor: `#5655a5`,
-        backgroundColor: '#eee',
+        backgroundColor: '#fff',
       },
     ],
   };
