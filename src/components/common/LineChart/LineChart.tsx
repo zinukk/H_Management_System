@@ -1,6 +1,7 @@
 import React from 'react';
 import { Line } from 'react-chartjs-2';
 import { Chart as ChartJS, CategoryScale, LinearScale, PointElement, LineElement, Tooltip } from 'chart.js';
+import styled from '@emotion/styled';
 
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Tooltip);
 
@@ -46,7 +47,24 @@ const LineChart = ({ chartData }: IProps) => {
     ],
   };
 
-  return <Line data={data} options={options} />;
+  return (
+    <StLineChart>
+      <StChartWrapper>
+        <Line data={data} options={options} />
+      </StChartWrapper>
+    </StLineChart>
+  );
 };
+
+const StLineChart = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+`;
+
+const StChartWrapper = styled.div`
+  width: 450px;
+`;
 
 export default LineChart;
