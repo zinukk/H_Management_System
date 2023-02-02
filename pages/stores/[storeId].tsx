@@ -1,6 +1,12 @@
 import styled from '@emotion/styled';
 import storesAPI from '@src/api/stores';
-import { IStore } from '@src/components/Home/Stores/types';
+import Dropdown from '@src/components/common/Dropdown/Dropdown';
+import { IStore } from '@src/components/Home/AllStores/types';
+import AvailableRobot from '@src/components/Stores/AvailableRobot';
+import MapNode from '@src/components/Stores/MapNode';
+import PeakTime from '@src/components/Stores/PeakTime';
+import StoreInfo from '@src/components/Stores/StoreInfo';
+
 import React from 'react';
 
 export async function getStaticPaths() {
@@ -19,18 +25,28 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params }: any) {
-  const response = await storesAPI.getStores(params.storeId);
+  const store = await storesAPI.getStores(params.storeId);
+  const stores = await storesAPI.getStores();
 
   return {
     props: {
-      store: response,
+      store: store,
+      stores: stores,
     },
   };
 }
 
-const Store = ({ store }: any) => {
-  console.log(store.stores);
-  return <StStore></StStore>;
+const Store = ({ store, stores }: any) => {
+  console.log(store);
+
+  return (
+    <StStore>
+      <StoreInfo store={store.stores} storeList={stores.stores} />
+      <PeakTime />
+      <MapNode />
+      <AvailableRobot />
+    </StStore>
+  );
 };
 
 const StStore = styled.div`
@@ -38,6 +54,8 @@ const StStore = styled.div`
   grid-template-columns: repeat(4, 1fr);
   grid-template-rows: repeat(2, 1fr);
   width: 100%;
+  height: 100%;
+  gap: 1vw;
 `;
 
 export default Store;

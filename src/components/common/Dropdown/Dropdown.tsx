@@ -1,18 +1,23 @@
+import React, { useRef, useState } from 'react';
 import styled from '@emotion/styled';
 import { IStore } from '@src/components/Home/AllStores/types';
 import useOnClickOutside from '@src/hooks/useOnClickOutside';
-import React, { useRef, useState } from 'react';
+import { useRecoilValue } from 'recoil';
+import { storeNameState } from '@src/store/storeNameState';
 
 interface IProps {
-  stores: IStore;
+  event: (arg1: string, arg2: string) => void;
+  dataList: IStore;
 }
 
-const Dropdown = ({ stores }: IProps) => {
+const Dropdown = ({ dataList, event }: IProps) => {
   const [isOpen, setisOpen] = useState<boolean>(false);
+
+  const storeName = useRecoilValue(storeNameState);
 
   const ref = useRef<HTMLDivElement>(null);
 
-  const modalHandler = () => {
+  const dropdownHandler = () => {
     setisOpen(!isOpen);
   };
 
@@ -22,12 +27,19 @@ const Dropdown = ({ stores }: IProps) => {
 
   return (
     <StDropdown ref={ref}>
-      <StSelected isOpen={isOpen} onClick={modalHandler}>
-        드롭다운
+      <StSelected isOpen={isOpen} onClick={dropdownHandler}>
+        {storeName}
       </StSelected>
       <StSelect isOpen={isOpen}>
-        {stores.map(({ map_name, map_id }: IStore) => (
-          <StOption key={map_id}>{map_name}</StOption>
+        {dataList.map(({ map_name, map_id }: IStore) => (
+          <StOption
+            onClick={() => {
+              dropdownHandler();
+              event(map_name, map_id);
+            }}
+            key={map_id}>
+            {map_name}
+          </StOption>
         ))}
       </StSelect>
     </StDropdown>
@@ -40,7 +52,7 @@ const StDropdown = styled.div`
 
 const StSelected = styled.button<{ isOpen: boolean }>`
   position: relative;
-  padding: 0 16px;
+  padding: 0 5px;
   width: 120px;
   height: 30px;
   background: ${({ theme, isOpen }) => (isOpen ? theme.color.main : theme.color.sub)};
@@ -49,7 +61,7 @@ const StSelected = styled.button<{ isOpen: boolean }>`
   border-radius: 5px;
   border-bottom-left-radius: ${({ isOpen }) => (isOpen ? '0px' : '5px')};
   border-bottom-right-radius: ${({ isOpen }) => (isOpen ? '0px' : '5px')};
-  font-size: 13px;
+  font-size: 11px;
   z-index: 2;
   cursor: pointer;
 

@@ -1,24 +1,21 @@
 import styled from '@emotion/styled';
 import Image from 'next/image';
-import { useRouter } from 'next/router';
 import React from 'react';
 import { IStore } from '../Home/AllStores/types';
 
 interface IProps {
+  event: (arg1: string, arg2: string) => void;
   store: IStore;
 }
 
-const Store = ({ store }: IProps) => {
+const Store = ({ store, event }: IProps) => {
   const { map_id, map_name, location } = store;
 
-  const router = useRouter();
-
-  const pageHandler = () => {
-    router.push(`/stores/${map_id}`);
-  };
-
   return (
-    <StStore onClick={pageHandler}>
+    <StStore
+      onClick={() => {
+        event(map_name, map_id);
+      }}>
       <StHeader>
         <StName>{map_name}</StName>
         <StLocation>{location}</StLocation>
