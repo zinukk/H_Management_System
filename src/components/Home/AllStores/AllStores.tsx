@@ -1,5 +1,8 @@
 import styled from '@emotion/styled';
+import { storeNameState } from '@src/store/storeNameState';
+import { useRouter } from 'next/router';
 import React from 'react';
+import { useSetRecoilState } from 'recoil';
 import Store from './Store';
 import { IStore } from './types';
 
@@ -8,11 +11,20 @@ interface IProps {
 }
 
 const AllStores = ({ stores }: IProps) => {
+  const router = useRouter();
+
+  const setStoreName = useSetRecoilState(storeNameState);
+
   const organizedStores = (stores: any) => {
     return stores.slice(0, 3).map((cur: IStore) => ({
       ...cur,
       total: parseInt(cur.error) + parseInt(cur.serving) + parseInt(cur.stay) + parseInt(cur.refair),
     }));
+  };
+
+  const pageHandler = (storeName: string, storeId: string) => {
+    setStoreName(storeName);
+    router.push(`/stores/${storeId}`);
   };
 
   return (
@@ -30,7 +42,7 @@ const AllStores = ({ stores }: IProps) => {
       </StHeader>
       <StBody>
         {organizedStores(stores).map((store: IStore, idx: number) => (
-          <Store key={idx} store={store} />
+          <Store key={idx} store={store} pageHandler={pageHandler} />
         ))}
       </StBody>
     </StStores>

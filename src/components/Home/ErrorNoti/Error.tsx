@@ -57,7 +57,7 @@ const StErrorMessage = styled.div`
   cursor: pointer;
 
   &:hover {
-    background-color: ${({ theme }) => theme.color.gray200};
+    background-color: ${({ theme }) => theme.color.gray100};
   }
 `;
 

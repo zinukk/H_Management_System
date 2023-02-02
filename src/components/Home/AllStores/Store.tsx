@@ -5,11 +5,24 @@ import { IStore } from './types';
 
 interface IProps {
   store: IStore;
+  pageHandler: (arg1: string, arg2: string) => void;
 }
 
-const Store = ({ store }: IProps) => {
-  const { img_src, map_name, location, error, serving, stay, refair, total, serving_count, error_count, performance } =
-    store;
+const Store = ({ store, pageHandler }: IProps) => {
+  const {
+    img_src,
+    map_name,
+    map_id,
+    location,
+    error,
+    serving,
+    stay,
+    refair,
+    total,
+    serving_count,
+    error_count,
+    performance,
+  } = store;
 
   const STATUS = [
     { id: 0, color: 'main', count: parseInt(error) },
@@ -29,10 +42,13 @@ const Store = ({ store }: IProps) => {
   };
 
   return (
-    <StStore>
+    <StStore
+      onClick={() => {
+        pageHandler(map_name, map_id);
+      }}>
       <StHeader>
         <StLogo>
-          <Image src={img_src} alt="매장로고" width={45} height={45} />
+          <Image src={img_src} alt="매장로고" width={60} height={40} />
         </StLogo>
         <StStoreInfo>
           <StName>{map_name}</StName>
@@ -63,6 +79,10 @@ const StStore = styled.div`
   padding: 1vw;
   width: 100%;
   box-shadow: rgba(99, 99, 99, 0.2) 0vw 0.1042vw 0.4167vw 0vw;
+  cursor: pointer;
+  :hover {
+    background: ${({ theme }) => theme.color.gray100};
+  }
 `;
 
 const StHeader = styled.div`
