@@ -119,12 +119,12 @@ const StDetailInfo = styled.div`
 const StTitle = styled.p`
   margin-bottom: 0.2604vw;
   color: ${({ theme }) => theme.color.main};
-  font-size: 15px;
-  font-weight: 600;
+  font-size: 0.9813vw;
+  font-weight: 700;
 `;
 
 const StDescription = styled.p`
-  font-size: 0.7292vw;
+  font-size: 0.8292vw;
   color: ${({ theme }) => theme.color.gray600};
 `;
 
