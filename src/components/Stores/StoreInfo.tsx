@@ -1,11 +1,10 @@
 import styled from '@emotion/styled';
-import { storeNameState } from '@src/store/storeNameState';
-import Image from 'next/image';
 import { useRouter } from 'next/router';
-import React from 'react';
 import { useSetRecoilState } from 'recoil';
-import Dropdown from '../common/Dropdown/Dropdown';
+import { storeNameState } from '@src/store/storeNameState';
 import { IStore } from '../Home/AllStores/types';
+import Image from 'next/image';
+import Dropdown from '../common/Dropdown/Dropdown';
 
 interface IProps {
   store: IStore;
@@ -79,7 +78,7 @@ const StBody = styled.div`
   flex-direction: column;
   padding: 1vw;
   width: 100%;
-  border-radius: 5px;
+  border-radius: 0.2604vw;
   border: ${({ theme }) => `1px solid ${theme.color.gray400}`};
 `;
 
@@ -113,19 +112,19 @@ const StDevider = styled.hr`
 `;
 
 const StDetailInfo = styled.div`
-  margin-bottom: 20px;
+  margin-bottom: 1.0417vw;
   width: 100%;
 `;
 
 const StTitle = styled.p`
-  margin-bottom: 5px;
+  margin-bottom: 0.2604vw;
   color: ${({ theme }) => theme.color.main};
   font-size: 15px;
   font-weight: 600;
 `;
 
 const StDescription = styled.p`
-  font-size: 14px;
+  font-size: 0.7292vw;
   color: ${({ theme }) => theme.color.gray600};
 `;
 
