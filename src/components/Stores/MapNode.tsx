@@ -6,8 +6,6 @@ import React from 'react';
 const MapNode = () => {
   const { query } = useRouter();
 
-  console.log(query.storeId);
-
   return (
     <StMapNode>
       <StHeader>맵 노드</StHeader>
