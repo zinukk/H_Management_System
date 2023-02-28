@@ -8,8 +8,8 @@ import homeAPI from '@src/api/home';
 import Calendar from '@src/components/common/Calendar/Calendar';
 
 interface IProps {
-  errors: IErrors;
-  setErrors: Dispatch<SetStateAction<Array<IErrors>>>;
+  errors: IErrors[];
+  setErrors: Dispatch<SetStateAction<IErrors[]>>;
 }
 
 const ErrorNoti = ({ errors, setErrors }: IProps) => {

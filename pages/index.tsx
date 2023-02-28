@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 import { errorsState } from '@src/store/errorsState';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useRecoilState } from 'recoil';
 import { IErrorsResponse } from '@src/components/Home/ErrorNoti/types';
 import { IStatusResponse } from '@src/components/Home/ErrorStatus/types';
@@ -41,6 +41,8 @@ interface IProps {
 
 const Home = ({ serving, stores, errorStatus, allErrors }: IProps) => {
   const [errors, setErrors] = useRecoilState(errorsState);
+
+  console.log(errors);
 
   useEffect(() => {
     setErrors(allErrors.error_notice);
