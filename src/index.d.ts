@@ -23,3 +23,7 @@ interface Color {
   gray900: string;
   gray950: string;
 }
+
+interface IResponseError {
+  message: string;
+}

@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { useRecoilState, useSetRecoilState } from 'recoil';
+import { useSetRecoilState } from 'recoil';
 import styled from '@emotion/styled';
 import storesAPI from '@src/api/stores';
 import Dropdown from '@src/components/common/Dropdown/Dropdown';
