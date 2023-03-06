@@ -4,10 +4,9 @@ import { useRouter } from 'next/router';
 import React from 'react';
 import { useSetRecoilState } from 'recoil';
 import Store from './Store';
-import { IStore } from './types';
 
 interface IProps {
-  stores: IStore;
+  stores: IStore[];
 }
 
 const AllStores = ({ stores }: IProps) => {
@@ -15,7 +14,7 @@ const AllStores = ({ stores }: IProps) => {
 
   const setStoreName = useSetRecoilState(storeNameState);
 
-  const organizedStores = (stores: any) => {
+  const organizedStores = (stores: IStore[]) => {
     return stores.slice(0, 3).map((cur: IStore) => ({
       ...cur,
       total: parseInt(cur.error) + parseInt(cur.serving) + parseInt(cur.stay) + parseInt(cur.refair),

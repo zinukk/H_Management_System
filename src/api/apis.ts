@@ -4,6 +4,7 @@ const API = {
   getErrorStatus: '/api/monitoring-system/risk_count',
   getAllErrors: '/api/monitoring-system/error-notice/all',
   postDates: '/api/monitoring-system/error-notice/by-time',
+  getRobots: '/api/monitoring-system/robot?state=',
 };
 
 export default API;

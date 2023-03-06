@@ -9,8 +9,8 @@ import Calendar from '@src/components/common/Calendar/Calendar';
 import Spinner from '@src/components/common/Spinner';
 
 interface IProps {
-  errors: IErrors[];
-  setErrors: Dispatch<SetStateAction<IErrors[]>>;
+  errors: IErrorNotice[];
+  setErrors: Dispatch<SetStateAction<IErrorNotice[]>>;
 }
 
 const ErrorNoti = ({ errors, setErrors }: IProps) => {
@@ -18,10 +18,12 @@ const ErrorNoti = ({ errors, setErrors }: IProps) => {
   const [endDate, setEndDate] = useState<Date>(new Date());
 
   const { mutate: postDates, isLoading } = useMutation((data: IDates) => homeAPI.postDates(data), {
-    onSuccess: (data: AxiosResponse<IErrorsResponse>) => {
+    onSuccess: (data: AxiosResponse<IResponse>) => {
       setErrors(data.error_notice.reverse());
     },
   });
+
+  console.log(errors);
 
   return (
     <StErrorNoti>
@@ -36,7 +38,7 @@ const ErrorNoti = ({ errors, setErrors }: IProps) => {
         />
       </StHeader>
       <StBody>
-        {isLoading ? <Spinner /> : errors.map((error: IErrors) => <Error error={error} key={error.error_id} />)}
+        {isLoading ? <Spinner /> : errors.map((error: IErrorNotice) => <Error error={error} key={error.error_id} />)}
       </StBody>
     </StErrorNoti>
   );

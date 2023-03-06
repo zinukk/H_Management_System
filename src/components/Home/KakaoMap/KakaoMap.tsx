@@ -1,11 +1,10 @@
 import styled from '@emotion/styled';
+import { IMap } from '@src/types/home';
 import React, { useState } from 'react';
-import { IStore } from '../AllStores/types';
 import { Map, MapMarker, CustomOverlayMap } from 'react-kakao-maps-sdk';
-import { IMap } from './types';
 
 interface IProps {
-  stores: IStore;
+  stores: IStore[];
 }
 
 const KakaoMap = ({ stores }: IProps) => {
@@ -45,15 +44,15 @@ const KakaoMap = ({ stores }: IProps) => {
                 setisOpen(false);
               }}
               position={{
-                lat: store_lat,
-                lng: store_lng,
+                lat: Number(store_lat),
+                lng: Number(store_lng),
               }}
             />
             {isOpen && info.map_id === map_id && (
               <CustomOverlayMap
                 position={{
-                  lat: store_lat,
-                  lng: store_lng,
+                  lat: Number(store_lat),
+                  lng: Number(store_lng),
                 }}
                 yAnchor={2.7}
                 xAnchor={0.5}>

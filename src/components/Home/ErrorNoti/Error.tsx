@@ -1,13 +1,11 @@
 import styled from '@emotion/styled';
-import React from 'react';
-import { IErrors } from './types';
 
 interface IProps {
-  error: IErrors;
+  error: IErrorNotice;
 }
 
 const Error = ({ error }: IProps) => {
-  const { error_id, error_msg, format_date, k_map_name, risk_degree } = error;
+  const { error_msg, format_date, k_map_name, risk_degree } = error;
 
   const errorDate = format_date.split(' ')[0];
   const errorTime = format_date.split(' ')[1] + format_date.split(' ')[2];
