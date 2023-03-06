@@ -1,17 +1,14 @@
 import styled from '@emotion/styled';
 import { errorsState } from '@src/store/errorsState';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useRecoilState } from 'recoil';
-import { IErrorsResponse } from '@src/components/Home/ErrorNoti/types';
-import { IStatusResponse } from '@src/components/Home/ErrorStatus/types';
-import { IServingResponse } from '@src/components/Home/Statistics/types';
-import { IStoreResponse } from '@src/components/Home/AllStores/types';
 import homeAPI from '@src/api/home';
 import Statistics from '@src/components/Home/Statistics/Statistics';
 import AllStores from '@src/components/Home/AllStores/AllStores';
 import KakaoMap from '@src/components/Home/KakaoMap/KakaoMap';
 import ErrorNoti from '@src/components/Home/ErrorNoti/ErrorNoti';
 import ErrorStatus from '@src/components/Home/ErrorStatus/ErrorStatus';
+import { IAllErrors, IAllErrorStatus, IServing } from '@src/types/home';
 
 export async function getServerSideProps() {
   const serving = await homeAPI.getServing();
@@ -33,16 +30,16 @@ export async function getServerSideProps() {
 }
 
 interface IProps {
-  serving: IServingResponse;
-  stores: IStoreResponse;
-  errorStatus: IStatusResponse;
-  allErrors: IErrorsResponse;
+  serving: IServing;
+  stores: IResponse;
+  errorStatus: IAllErrorStatus;
+  allErrors: IAllErrors;
 }
 
 const Home = ({ serving, stores, errorStatus, allErrors }: IProps) => {
   const [errors, setErrors] = useRecoilState(errorsState);
 
-  console.log(errors);
+  console.log(allErrors);
 
   useEffect(() => {
     setErrors(allErrors.error_notice);

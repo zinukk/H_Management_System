@@ -1,9 +1,9 @@
 import styled from '@emotion/styled';
+import { IErrorStatus } from '@src/types/home';
 import React from 'react';
-import { IStatus } from './types';
 
 interface IProps {
-  errorStatus: IStatus;
+  errorStatus: IErrorStatus;
 }
 
 const ErrorStatus = ({ errorStatus }: IProps) => {
@@ -11,7 +11,7 @@ const ErrorStatus = ({ errorStatus }: IProps) => {
 
   const totalCount = Object.values(errorStatus)
     .filter((cur) => typeof cur === 'number')
-    .reduce((a, b) => a + b);
+    .reduce((a, b) => Number(a) + Number(b));
 
   const ERROR_STATUS = [
     { id: 0, error: 'All', color: 'stroke', count: totalCount },

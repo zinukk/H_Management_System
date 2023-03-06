@@ -1,13 +1,10 @@
 import styled from '@emotion/styled';
 import storesAPI from '@src/api/stores';
-import Dropdown from '@src/components/common/Dropdown/Dropdown';
-import { IStore } from '@src/components/Home/AllStores/types';
 import AvailableRobot from '@src/components/Stores/AvailableRobot';
 import MapNode from '@src/components/Stores/MapNode';
 import PeakTime from '@src/components/Stores/PeakTime';
 import StoreInfo from '@src/components/Stores/StoreInfo';
-
-import React from 'react';
+import { IStore } from '@src/components/Home/AllStores/types';
 
 export async function getStaticPaths() {
   const response: any = await storesAPI.getStores();

@@ -39,7 +39,7 @@ const Stores = ({ stores }: IProps) => {
   return (
     <StStores>
       <StHeader>
-        <Dropdown event={pageHandler} dataList={stores.stores} />
+        <Dropdown type="store" event={pageHandler} dataList={stores.stores} />
       </StHeader>
       <StBody>
         {stores.stores.map((store: IStore) => (
