@@ -35,8 +35,6 @@ const Robot = ({ stores, robots }: IProps) => {
     console.log('asd');
   };
 
-  console.log(stores);
-
   const pageHandler = (storeName: string, storeId: string) => {
     setStoreName(storeName);
     router.push(`/robot/${storeId}`);

@@ -1,11 +1,10 @@
-import { IStore } from '@src/components/Home/AllStores/types';
 import StoreDropDown from './StoreDropDown';
 import RobotDropDown from './RobotDropDown';
 import { IRobotDataList } from './types';
 
 interface IProps {
   type: 'store' | 'robot';
-  dataList: IStore | IRobotDataList;
+  dataList: IStore[] | IRobotDataList;
   event: (arg1: string, arg2: string) => void;
 }
 

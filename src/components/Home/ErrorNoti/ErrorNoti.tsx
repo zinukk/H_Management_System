@@ -23,8 +23,6 @@ const ErrorNoti = ({ errors, setErrors }: IProps) => {
     },
   });
 
-  console.log(errors);
-
   return (
     <StErrorNoti>
       <StHeader>
