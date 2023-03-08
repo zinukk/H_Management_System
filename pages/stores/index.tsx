@@ -3,23 +3,22 @@ import { useSetRecoilState } from 'recoil';
 import styled from '@emotion/styled';
 import storesAPI from '@src/api/stores';
 import Dropdown from '@src/components/common/Dropdown/Dropdown';
-import { IStore, IStoreResponse } from '@src/components/Home/AllStores/types';
 import Store from '@src/components/Stores/Store';
 import { storeNameState } from '@src/store/storeNameState';
 import { useRouter } from 'next/router';
 
 export async function getStaticProps() {
-  const response = await storesAPI.getStores();
+  const stores = await storesAPI.getStores();
 
   return {
     props: {
-      stores: response,
+      stores: stores,
     },
   };
 }
 
 interface IProps {
-  stores: IStoreResponse;
+  stores: IResponse;
 }
 
 const Stores = ({ stores }: IProps) => {

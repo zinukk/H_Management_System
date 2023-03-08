@@ -12,8 +12,6 @@ interface IProps {
 }
 
 const AvailableRobot = ({ robots }: IProps) => {
-  console.log(robots);
-
   return (
     <StAvailableRobot>
       <StHeader>사용 가능한 로봇 수</StHeader>

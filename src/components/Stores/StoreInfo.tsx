@@ -2,13 +2,12 @@ import styled from '@emotion/styled';
 import { useRouter } from 'next/router';
 import { useSetRecoilState } from 'recoil';
 import { storeNameState } from '@src/store/storeNameState';
-import { IStore } from '../Home/AllStores/types';
 import Image from 'next/image';
 import Dropdown from '../common/Dropdown/Dropdown';
 
 interface IProps {
-  store: IStore;
-  storeList: IStore;
+  store: IStore[];
+  storeList: IStore[];
 }
 
 const StoreInfo = ({ store, storeList }: IProps) => {
@@ -36,7 +35,7 @@ const StoreInfo = ({ store, storeList }: IProps) => {
   return (
     <StStoreInfo>
       <StHeader>
-        <Dropdown dataList={storeList} event={pageHandler} />
+        <Dropdown dataList={storeList} event={pageHandler} type={'store'} />
       </StHeader>
       <StBody>
         <StInfo>

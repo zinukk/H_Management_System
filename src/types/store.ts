@@ -1,7 +1,9 @@
-import React from 'react';
+export interface IStoreDetail extends IResponse {
+  week: IServedCounts[];
+  month: IServedCounts[];
+}
 
-const store = () => {
-  return <div></div>;
+export type IServedCounts = {
+  hours: string;
+  avg_cnt: string;
 };
-
-export default store;

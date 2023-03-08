@@ -4,7 +4,7 @@ import AvailableRobot from '@src/components/Stores/AvailableRobot';
 import MapNode from '@src/components/Stores/MapNode';
 import PeakTime from '@src/components/Stores/PeakTime';
 import StoreInfo from '@src/components/Stores/StoreInfo';
-import { IStore } from '@src/components/Home/AllStores/types';
+import { IStoreDetail } from '@src/types/store';
 
 export async function getStaticPaths() {
   const response: any = await storesAPI.getStores();
@@ -33,9 +33,12 @@ export async function getStaticProps({ params }: any) {
   };
 }
 
-const Store = ({ store, stores }: any) => {
-  console.log(store);
+interface IProps {
+  store: IStoreDetail;
+  stores: IResponse;
+}
 
+const Store = ({ store, stores }: IProps) => {
   return (
     <StStore>
       <StoreInfo store={store.stores} storeList={stores.stores} />

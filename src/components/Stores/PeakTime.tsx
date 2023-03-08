@@ -1,11 +1,9 @@
 import styled from '@emotion/styled';
+import { IServedCounts } from '@src/types/store';
 import LineChart from '../common/LineChart/LineChart';
 
 interface IProps {
-  servingCount: {
-    hours: string;
-    avg_cnt: string;
-  }[];
+  servingCount: IServedCounts[];
 }
 
 const PeakTime = ({ servingCount }: IProps) => {

@@ -39,8 +39,6 @@ interface IProps {
 const Home = ({ serving, stores, errorStatus, allErrors }: IProps) => {
   const [errors, setErrors] = useRecoilState(errorsState);
 
-  console.log(allErrors);
-
   useEffect(() => {
     setErrors(allErrors.error_notice);
   }, []);
