@@ -1,4 +1,5 @@
 export type IRobotDataList = {
-  id: number;
+  id: string;
   state: string;
-}[];
+  color: string;
+};
