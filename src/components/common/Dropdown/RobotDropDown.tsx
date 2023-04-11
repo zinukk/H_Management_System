@@ -1,14 +1,13 @@
 import React, { useRef, useState } from 'react';
 import styled from '@emotion/styled';
-import { IStore } from '@src/components/Home/AllStores/types';
 import useOnClickOutside from '@src/hooks/useOnClickOutside';
 import { useRecoilState } from 'recoil';
 import { robotState } from '@src/store/robotState';
 import { IRobotDataList } from './types';
 
 interface IProps {
-  event: (arg1: string, arg2: string) => void;
-  dataList: IStore | IRobotDataList;
+  event: (arg1: string) => void;
+  dataList: IRobotDataList[];
 }
 
 const RobotDropDown = ({ dataList, event }: IProps) => {
@@ -32,12 +31,12 @@ const RobotDropDown = ({ dataList, event }: IProps) => {
         {robot}
       </StSelected>
       <StSelect isOpen={isOpen}>
-        {dataList.map(({ id, state }: IStore) => (
+        {dataList.map(({ id, state }: { id: string; state: string }) => (
           <StOption
             onClick={() => {
               dropdownHandler();
               setRobotState(state);
-              event(state, id);
+              event(id);
             }}
             key={id}>
             {state}

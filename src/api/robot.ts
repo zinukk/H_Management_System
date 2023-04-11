@@ -3,7 +3,7 @@ import API from './apis';
 
 const robotAPI = {
   getRobots: () => {
-    return client.get(`${API.getStores}`);
+    return client.get(`${API.getRobots}`);
   },
 };
 

@@ -1,20 +1,18 @@
 import React, { useRef, useState } from 'react';
 import styled from '@emotion/styled';
-import { IStore } from '@src/components/Home/AllStores/types';
 import useOnClickOutside from '@src/hooks/useOnClickOutside';
-import { useRecoilValue } from 'recoil';
+import { useRecoilState, useRecoilValue } from 'recoil';
 import { storeNameState } from '@src/store/storeNameState';
-import { IRobotDataList } from './types';
 
 interface IProps {
   event: (arg1: string, arg2: string) => void;
-  dataList: IStore | IRobotDataList;
+  dataList: IStore[];
 }
 
 const StoreDropDown = ({ dataList, event }: IProps) => {
   const [isOpen, setisOpen] = useState<boolean>(false);
 
-  const storeName = useRecoilValue(storeNameState);
+  const [storeName, setStoreName] = useRecoilState(storeNameState);
 
   const ref = useRef<HTMLDivElement>(null);
 
@@ -36,6 +34,7 @@ const StoreDropDown = ({ dataList, event }: IProps) => {
           <StOption
             onClick={() => {
               dropdownHandler();
+              setStoreName(map_name);
               event(map_name, map_id);
             }}
             key={map_id}>
