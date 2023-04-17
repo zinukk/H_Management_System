@@ -9,6 +9,7 @@ import robotAPI from '@src/api/robot';
 import { IRobotState } from '@src/types/robot';
 import { IRobotDataList } from '@src/components/common/Dropdown/types';
 import RobotState from '@src/components/common/RobotState/RobotState';
+import { robotState } from '@src/store/robotState';
 
 export async function getServerSideProps() {
   const robots = await robotAPI.getRobots();
@@ -37,6 +38,13 @@ const Robot = ({ stores, robots }: IProps) => {
 
   const setStoreName = useSetRecoilState(storeNameState);
 
+  const setRobotState = useSetRecoilState(robotState);
+
+  useEffect(() => {
+    setStoreName('전체매장');
+    setRobotState('전체로봇');
+  }, []);
+
   const getRobotsByState = (state: string) => {
     const filteredList = state === '0' ? robots.robot : robots.robot.filter(({ robot_state }) => robot_state === state);
     return setRobotList(filteredList);
@@ -46,6 +54,8 @@ const Robot = ({ stores, robots }: IProps) => {
     setStoreName(storeName);
     router.push(`/robot/${storeId}`);
   };
+
+  console.log(robotList);
 
   return (
     <StRobot>
@@ -106,7 +116,7 @@ const StNull = styled.p`
   left: 50%;
   translate: -50%;
   color: ${({ theme }) => theme.color.gray500};
-  font-size: 24px;
+  font-size: 1.25vw;
 `;
 
 export default Robot;

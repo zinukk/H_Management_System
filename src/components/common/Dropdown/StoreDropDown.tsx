@@ -1,8 +1,10 @@
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import styled from '@emotion/styled';
 import useOnClickOutside from '@src/hooks/useOnClickOutside';
 import { useRecoilState, useRecoilValue } from 'recoil';
 import { storeNameState } from '@src/store/storeNameState';
+import { useRouter } from 'next/router';
+import { IStoreName } from './types';
 
 interface IProps {
   event: (arg1: string, arg2: string) => void;
@@ -10,6 +12,14 @@ interface IProps {
 }
 
 const StoreDropDown = ({ dataList, event }: IProps) => {
+  const router = useRouter();
+
+  const mapId = Number(router.query.robotId);
+
+  useEffect(() => {
+    mapId && setStoreName(STORE[mapId]);
+  }, []);
+
   const [isOpen, setisOpen] = useState<boolean>(false);
 
   const [storeName, setStoreName] = useRecoilState(storeNameState);
@@ -44,6 +54,16 @@ const StoreDropDown = ({ dataList, event }: IProps) => {
       </StSelect>
     </StDropdown>
   );
+};
+
+const STORE: IStoreName = {
+  0: '전체매장',
+  1: '향동 노리 배달쿡',
+  2: '연신내 더피플버거',
+  3: '오산 공유주방',
+  4: '차세대 융합 기술 연구원',
+  5: '더티프라이',
+  6: '노원 발란',
 };
 
 const StDropdown = styled.div`

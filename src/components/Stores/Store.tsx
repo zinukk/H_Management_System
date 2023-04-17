@@ -1,7 +1,6 @@
 import styled from '@emotion/styled';
 import Image from 'next/image';
 import React from 'react';
-import { IStore } from '../Home/AllStores/types';
 
 interface IProps {
   event: (arg1: string, arg2: string) => void;
@@ -35,6 +34,9 @@ const StStore = styled.div`
   border-radius: 0.2604vw;
   box-shadow: rgba(99, 99, 99, 0.2) 0vw 0.1042vw 0.4167vw 0vw;
   cursor: pointer;
+  :hover {
+    background: ${({ theme }) => theme.color.gray100};
+  }
 `;
 
 const StHeader = styled.div`

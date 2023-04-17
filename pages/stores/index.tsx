@@ -27,8 +27,8 @@ const Stores = ({ stores }: IProps) => {
   const setStoreName = useSetRecoilState(storeNameState);
 
   const pageHandler = (storeName: string, storeId: string) => {
-    setStoreName(storeName);
     router.push(`/stores/${storeId}`);
+    setStoreName(storeName);
   };
 
   useEffect(() => {

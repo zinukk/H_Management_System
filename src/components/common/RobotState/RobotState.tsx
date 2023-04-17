@@ -1,5 +1,6 @@
 import styled from '@emotion/styled';
 import { IRobotDataList } from '../Dropdown/types';
+import { useRouter } from 'next/router';
 
 interface IProps {
   k_map_name: string;
@@ -8,10 +9,22 @@ interface IProps {
   state: string;
   battery: string;
   serial_number: string;
+  map_id: string;
   ROBOT_STATE: IRobotDataList[];
 }
 
-const RobotState = ({ k_map_name, serving_count, distance, state, battery, serial_number, ROBOT_STATE }: IProps) => {
+const RobotState = ({
+  k_map_name,
+  serving_count,
+  distance,
+  state,
+  battery,
+  serial_number,
+  ROBOT_STATE,
+  map_id,
+}: IProps) => {
+  const router = useRouter();
+
   const getColorById = (id: string) => {
     return ROBOT_STATE.filter((robot) => robot.id === id)[0].color;
   };
@@ -20,13 +33,20 @@ const RobotState = ({ k_map_name, serving_count, distance, state, battery, seria
     return ROBOT_STATE.filter((robot) => robot.id === id)[0].state;
   };
 
+  const pageHandler = (mapId: string) => {
+    router.push(`/robot/${mapId}`);
+  };
+
   return (
-    <StRobotState>
+    <StRobotState
+      onClick={() => {
+        pageHandler(map_id);
+      }}>
       <StHeader>
         <StStore>{k_map_name}</StStore>
         <StGapBox>
           <StState color={getColorById(state)}>{getStateById(state)}</StState>
-          <StImg src={`assets/images/robot/robot_state_${state}.png`} alt="로봇이미지" />
+          <StImg src={`/assets/images/robot/robot_state_${state}.png`} alt="로봇이미지" />
         </StGapBox>
       </StHeader>
       <StBody>
@@ -51,10 +71,16 @@ const RobotState = ({ k_map_name, serving_count, distance, state, battery, seria
 };
 
 const StRobotState = styled.div`
+  width: 100%;
   padding: 1vw;
   background: white;
   border-radius: 5px;
   box-shadow: rgba(99, 99, 99, 0.2) 0vw 0.1042vw 0.4167vw 0vw;
+  cursor: pointer;
+
+  :hover {
+    background: ${({ theme }) => theme.color.gray100};
+  }
 `;
 
 const StHeader = styled.div`
@@ -65,7 +91,7 @@ const StHeader = styled.div`
 `;
 
 const StStore = styled.p`
-  font-size: 12px;
+  font-size: 0.625vw;
   font-weight: 500;
 `;
 
@@ -77,13 +103,13 @@ const StGapBox = styled.div`
 
 const StState = styled.p<{ color: string | undefined }>`
   color: ${({ color }) => color};
-  font-size: 13px;
+  font-size: 0.6771vw;
   font-weight: 600;
 `;
 
 const StImg = styled.img`
-  width: 30px;
-  height: 30px;
+  width: 1.5625vw;
+  height: 1.5625vw;
 `;
 
 const StBody = styled.div`
@@ -93,16 +119,16 @@ const StBody = styled.div`
 const StSerialNumber = styled.p`
   margin: 0.2vw 0;
   text-align: right;
-  font-size: 10px;
+  font-size: 0.5208vw;
 `;
 
 const StGray = styled.p`
-  font-size: 12px;
+  font-size: 0.625vw;
   color: ${({ theme }) => theme.color.gray600};
 `;
 
 const StBlack = styled.p`
-  font-size: 12px;
+  font-size: 0.625vw;
   color: ${({ theme }) => theme.color.black};
 `;
 
@@ -118,7 +144,7 @@ const StBatteryBox = styled.div`
   width: 100%;
   height: 0.3646vw;
   background: #e8e6f0;
-  border-radius: 20px;
+  border-radius: 1.0417vw;
   overflow: hidden;
 `;
 
@@ -137,7 +163,7 @@ const StBatteryBar = styled.span<{ width: number | undefined }>`
 
 const StBatteryPercent = styled.p`
   margin-top: 0.5vw;
-  font-size: 12px;
+  font-size: 0.625vw;
   color: ${({ theme }) => theme.color.black};
 `;
 
