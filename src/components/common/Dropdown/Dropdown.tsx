@@ -4,7 +4,7 @@ import RobotDropDown from './RobotDropDown';
 interface IProps {
   type: 'store' | 'robot';
   dataList: any;
-  event: (arg1: string, arg2: string) => void;
+  event: any;
 }
 
 const Dropdown = ({ type, dataList, event }: IProps) => {

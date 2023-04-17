@@ -19,7 +19,6 @@ const StSpinner = styled.div`
   --uib-size: 35px;
   --uib-speed: 0.8s;
   --uib-color: ${({ theme }) => theme.color.main};
-  /* position: relative; */
   display: inline-block;
   height: var(--uib-size);
   width: var(--uib-size);

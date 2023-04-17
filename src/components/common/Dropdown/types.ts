@@ -3,3 +3,7 @@ export type IRobotDataList = {
   state: string;
   color: string;
 };
+
+export type IStoreName = {
+  [key: string]: string;
+};
