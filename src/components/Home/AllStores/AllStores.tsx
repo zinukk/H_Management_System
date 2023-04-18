@@ -1,8 +1,11 @@
 import styled from '@emotion/styled';
 import { storeNameState } from '@src/store/storeNameState';
 import { useRouter } from 'next/router';
-import React from 'react';
 import { useSetRecoilState } from 'recoil';
+import Slider from 'react-slick';
+import { MdArrowBackIos, MdArrowForwardIos } from 'react-icons/md';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
 import Store from './Store';
 
 interface IProps {
@@ -15,7 +18,7 @@ const AllStores = ({ stores }: IProps) => {
   const setStoreName = useSetRecoilState(storeNameState);
 
   const organizedStores = (stores: IStore[]) => {
-    return stores.slice(0, 3).map((cur: IStore) => ({
+    return stores.map((cur: IStore) => ({
       ...cur,
       total: parseInt(cur.error) + parseInt(cur.serving) + parseInt(cur.stay) + parseInt(cur.refair),
     }));
@@ -24,6 +27,25 @@ const AllStores = ({ stores }: IProps) => {
   const pageHandler = (storeName: string, storeId: string) => {
     setStoreName(storeName);
     router.push(`/stores/${storeId}`);
+  };
+
+  const settings = {
+    dots: false,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 3, // 한 화면에 보이는 이미지 개수
+    slidesToScroll: 3, // 한 번에 스크롤되는 이미지 개수
+
+    nextArrow: (
+      <Next>
+        <MdArrowForwardIos className="nextIcon" />
+      </Next>
+    ),
+    prevArrow: (
+      <Pre>
+        <MdArrowBackIos className="prevIcon" />
+      </Pre>
+    ),
   };
 
   return (
@@ -40,9 +62,11 @@ const AllStores = ({ stores }: IProps) => {
         </StStatusBox>
       </StHeader>
       <StBody>
-        {organizedStores(stores).map((store: IStore, idx: number) => (
-          <Store key={idx} store={store} pageHandler={pageHandler} />
-        ))}
+        <StyledSlider {...settings}>
+          {organizedStores(stores).map((store: IStore, idx: number) => (
+            <Store key={idx} store={store} pageHandler={pageHandler} />
+          ))}
+        </StyledSlider>
       </StBody>
     </StStores>
   );
@@ -107,12 +131,50 @@ const StStatus = styled.p`
 `;
 
 const StBody = styled.div`
-  margin-top: 2vw;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
-  gap: 1vw;
   width: 100%;
+`;
+
+const StyledSlider = styled(Slider)`
+  position: relative;
+  width: 100%;
+  padding: 1vw;
+
+  .slick-prev::before,
+  .slick-next::before {
+    opacity: 0;
+    display: none;
+  }
+`;
+
+const Pre = styled.div`
+  position: absolute;
+  left: -0.5%;
+  width: 30px;
+  height: 30px;
+  z-index: 10;
+
+  .prevIcon {
+    color: ${({ theme }) => theme.color.main};
+    font-size: 30px;
+    z-index: 11;
+  }
+`;
+
+const Next = styled.div`
+  position: absolute;
+  right: -1.5%;
+  width: 30px;
+  height: 30px;
+  z-index: 10;
+
+  .nextIcon {
+    color: ${({ theme }) => theme.color.main};
+    font-size: 30px;
+    z-index: 11;
+  }
 `;
 
 export default AllStores;
