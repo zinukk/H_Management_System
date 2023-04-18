@@ -79,6 +79,7 @@ const StStore = styled.div`
   width: 100%;
   box-shadow: rgba(99, 99, 99, 0.2) 0vw 0.1042vw 0.4167vw 0vw;
   cursor: pointer;
+
   :hover {
     background: ${({ theme }) => theme.color.gray100};
   }
