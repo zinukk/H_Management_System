@@ -13,10 +13,10 @@ const Spinner = () => {
 
 const StSpinner = styled.div`
   position: absolute;
-  top: 40%;
+  top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  --uib-size: 35px;
+  --uib-size: 2.0833vw;
   --uib-speed: 0.8s;
   --uib-color: ${({ theme }) => theme.color.main};
   display: inline-block;

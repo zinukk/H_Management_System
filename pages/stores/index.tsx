@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import { motion } from 'framer-motion';
 import { useSetRecoilState } from 'recoil';
 import styled from '@emotion/styled';
 import storesAPI from '@src/api/stores';
@@ -36,16 +37,18 @@ const Stores = ({ stores }: IProps) => {
   }, []);
 
   return (
-    <StStores>
-      <StHeader>
-        <Dropdown type="store" event={pageHandler} dataList={stores.stores} />
-      </StHeader>
-      <StBody>
-        {stores.stores.map((store: IStore) => (
-          <Store key={store.map_id} store={store} event={pageHandler} />
-        ))}
-      </StBody>
-    </StStores>
+    <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
+      <StStores>
+        <StHeader>
+          <Dropdown type="store" event={pageHandler} dataList={stores.stores} />
+        </StHeader>
+        <StBody>
+          {stores.stores.map((store: IStore) => (
+            <Store key={store.map_id} store={store} event={pageHandler} />
+          ))}
+        </StBody>
+      </StStores>
+    </motion.div>
   );
 };
 

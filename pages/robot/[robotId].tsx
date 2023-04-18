@@ -1,3 +1,4 @@
+import { motion } from 'framer-motion';
 import styled from '@emotion/styled';
 import robotAPI from '@src/api/robot';
 import storesAPI from '@src/api/stores';
@@ -76,24 +77,26 @@ const RobotDetail = ({ robot, stores }: IProps) => {
   };
 
   return (
-    <StRobotDetail>
-      <StHeader>
-        <Dropdown type="store" dataList={stores.stores} event={pageHandler} />
-        <Dropdown type="robot" dataList={ROBOT_STATE} event={getRobotsByState} />
-      </StHeader>
-      <StBody>
-        <StRobotList>
-          {robotList.length !== 0 ? (
-            robotList.map((robot, idx) => <RobotState {...robot} key={idx} ROBOT_STATE={ROBOT_STATE} />)
-          ) : (
-            <StNull>해당 상태의 로봇이 존재하지 않습니다 ;(</StNull>
-          )}
-        </StRobotList>
-        <StMapWrapper>
-          <StMapImg src={`/assets/images/map/map-background-${map_id}-monitoring.png`} alt="매장이미지" fill />
-        </StMapWrapper>
-      </StBody>
-    </StRobotDetail>
+    <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
+      <StRobotDetail>
+        <StHeader>
+          <Dropdown type="store" dataList={stores.stores} event={pageHandler} />
+          <Dropdown type="robot" dataList={ROBOT_STATE} event={getRobotsByState} />
+        </StHeader>
+        <StBody>
+          <StRobotList>
+            {robotList.length !== 0 ? (
+              robotList.map((robot, idx) => <RobotState {...robot} key={idx} ROBOT_STATE={ROBOT_STATE} />)
+            ) : (
+              <StNull>해당 상태의 로봇이 존재하지 않습니다 ;(</StNull>
+            )}
+          </StRobotList>
+          <StMapWrapper>
+            <StMapImg src={`/assets/images/map/map-background-${map_id}-monitoring.png`} alt="매장이미지" fill />
+          </StMapWrapper>
+        </StBody>
+      </StRobotDetail>
+    </motion.div>
   );
 };
 

@@ -1,3 +1,4 @@
+import { motion } from 'framer-motion';
 import styled from '@emotion/styled';
 import storesAPI from '@src/api/stores';
 import AvailableRobot from '@src/components/Stores/AvailableRobot';
@@ -40,12 +41,14 @@ interface IProps {
 
 const Store = ({ store, stores }: IProps) => {
   return (
-    <StStore>
-      <StoreInfo store={store.stores} storeList={stores.stores} />
-      <PeakTime servingCount={store.week} />
-      <MapNode />
-      <AvailableRobot robots={store.robot_counts[0]} />
-    </StStore>
+    <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
+      <StStore>
+        <StoreInfo store={store.stores} storeList={stores.stores} />
+        <PeakTime servingCount={store.week} />
+        <MapNode />
+        <AvailableRobot robots={store.robot_counts[0]} />
+      </StStore>
+    </motion.div>
   );
 };
 
