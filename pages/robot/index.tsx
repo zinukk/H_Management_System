@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { motion } from 'framer-motion';
 import styled from '@emotion/styled';
 import storesAPI from '@src/api/stores';
 import Dropdown from '@src/components/common/Dropdown/Dropdown';
@@ -58,21 +59,23 @@ const Robot = ({ stores, robots }: IProps) => {
   console.log(robotList);
 
   return (
-    <StRobot>
-      <StHeader>
-        <Dropdown type="store" dataList={stores.stores} event={pageHandler} />
-        <Dropdown type="robot" dataList={ROBOT_STATE} event={getRobotsByState} />
-      </StHeader>
-      <StBody>
-        <StRobotList>
-          {robotList.length !== 0 ? (
-            robotList.map((robot, idx) => <RobotState {...robot} key={idx} ROBOT_STATE={ROBOT_STATE} />)
-          ) : (
-            <StNull>해당 상태의 로봇이 존재하지 않습니다 ;(</StNull>
-          )}
-        </StRobotList>
-      </StBody>
-    </StRobot>
+    <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
+      <StRobot>
+        <StHeader>
+          <Dropdown type="store" dataList={stores.stores} event={pageHandler} />
+          <Dropdown type="robot" dataList={ROBOT_STATE} event={getRobotsByState} />
+        </StHeader>
+        <StBody>
+          <StRobotList>
+            {robotList.length !== 0 ? (
+              robotList.map((robot, idx) => <RobotState {...robot} key={idx} ROBOT_STATE={ROBOT_STATE} />)
+            ) : (
+              <StNull>해당 상태의 로봇이 존재하지 않습니다 ;(</StNull>
+            )}
+          </StRobotList>
+        </StBody>
+      </StRobot>
+    </motion.div>
   );
 };
 

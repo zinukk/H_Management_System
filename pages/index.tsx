@@ -1,4 +1,5 @@
 import styled from '@emotion/styled';
+import { motion } from 'framer-motion';
 import { errorsState } from '@src/store/errorsState';
 import { useEffect } from 'react';
 import { useRecoilState } from 'recoil';
@@ -44,13 +45,15 @@ const Home = ({ serving, stores, errorStatus, allErrors }: IProps) => {
   }, []);
 
   return (
-    <StHome>
-      <Statistics serving={serving.all} />
-      <AllStores stores={stores.stores} />
-      <KakaoMap stores={stores.stores} />
-      <ErrorNoti errors={errors} setErrors={setErrors} />
-      <ErrorStatus errorStatus={errorStatus.all} />
-    </StHome>
+    <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
+      <StHome>
+        <Statistics serving={serving.all} />
+        <AllStores stores={stores.stores} />
+        <KakaoMap stores={stores.stores} />
+        <ErrorNoti errors={errors} setErrors={setErrors} />
+        <ErrorStatus errorStatus={errorStatus.all} />
+      </StHome>
+    </motion.div>
   );
 };
 
