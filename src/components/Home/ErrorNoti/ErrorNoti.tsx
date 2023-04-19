@@ -27,13 +27,15 @@ const ErrorNoti = ({ errors, setErrors }: IProps) => {
     <StErrorNoti>
       <StHeader>
         <StTitle>에러 알림</StTitle>
-        <Calendar
-          event={postDates}
-          startDate={startDate}
-          setStartDate={setStartDate}
-          endDate={endDate}
-          setEndDate={setEndDate}
-        />
+        <StCalendarBox>
+          <Calendar
+            event={postDates}
+            startDate={startDate}
+            setStartDate={setStartDate}
+            endDate={endDate}
+            setEndDate={setEndDate}
+          />
+        </StCalendarBox>
       </StHeader>
       <StBody>
         {isLoading ? <Spinner /> : errors.map((error: IErrorNotice) => <Error error={error} key={error.error_id} />)}
@@ -54,12 +56,17 @@ const StErrorNoti = styled.div`
 const StHeader = styled.div`
   display: flex;
   justify-content: space-between;
+  align-items: center;
   width: 100%;
 `;
 
 const StTitle = styled.p`
   font-size: 0.8333vw;
   font-weight: 600;
+`;
+
+const StCalendarBox = styled.div`
+  width: 20vw;
 `;
 
 const StBody = styled.div`
