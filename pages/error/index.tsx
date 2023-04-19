@@ -1,30 +1,34 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import styled from '@emotion/styled';
-import ErrorList from '@src/components/Error/ErrorList';
-
+import ErrorList from '@src/components/Error/ErrorList/ErrorList';
 import storesAPI from '@src/api/stores';
+import errorAPI from '@src/api/error';
 
 export async function getStaticProps() {
   const stores = await storesAPI.getStores();
 
+  const errors = await errorAPI.getDefailtErrorLists();
+
   return {
     props: {
       stores: stores,
+      errors: errors,
     },
   };
 }
 
 interface IProps {
   stores: IResponse;
+  errors: any;
 }
 
-const Error = ({ stores }: IProps) => {
+const Error = ({ stores, errors }: IProps) => {
   return (
     <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
       <StError>
         <StBody>
-          <ErrorList stores={stores} />
+          <ErrorList stores={stores} errors={errors} />
           <StErrorTypeChart>에러 타입 차트</StErrorTypeChart>
           <StGuideChart>가이드 이탈</StGuideChart>
           <StOverDriveChart>오버 드라이브</StOverDriveChart>

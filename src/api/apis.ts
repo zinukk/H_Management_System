@@ -6,6 +6,7 @@ const API = {
   postDates: '/api/monitoring-system/error-notice/by-time',
   getRobots: '/api/monitoring-system/robot?state=',
   getRobotsDetail: '/api/monitoring-system/robot/map_id',
+  getDefaultErrorLists: '/api/monitoring-system/error-statistic',
 };
 
 export default API;
