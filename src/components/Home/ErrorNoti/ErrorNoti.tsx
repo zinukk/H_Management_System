@@ -9,17 +9,17 @@ import Calendar from '@src/components/common/Calendar/Calendar';
 import Spinner from '@src/components/common/Spinner';
 
 interface IProps {
-  errors: IErrorNotice[];
-  setErrors: Dispatch<SetStateAction<IErrorNotice[]>>;
+  errorList: IErrorNotice[];
+  setErrorList: Dispatch<SetStateAction<IErrorNotice[]>>;
 }
 
-const ErrorNoti = ({ errors, setErrors }: IProps) => {
+const ErrorNoti = ({ errorList, setErrorList }: IProps) => {
   const [startDate, setStartDate] = useState<Date>(new Date());
   const [endDate, setEndDate] = useState<Date>(new Date());
 
   const { mutate: postDates, isLoading } = useMutation((data: IDates) => homeAPI.postDates(data), {
-    onSuccess: (data: AxiosResponse<IResponse>) => {
-      setErrors(data.error_notice.reverse());
+    onSuccess: ({ error_notice }: AxiosResponse<IResponse>) => {
+      setErrorList(error_notice.reverse());
     },
   });
 
@@ -38,7 +38,7 @@ const ErrorNoti = ({ errors, setErrors }: IProps) => {
         </StCalendarBox>
       </StHeader>
       <StBody>
-        {isLoading ? <Spinner /> : errors.map((error: IErrorNotice) => <Error error={error} key={error.error_id} />)}
+        {isLoading ? <Spinner /> : errorList.map((error: IErrorNotice) => <Error error={error} key={error.error_id} />)}
       </StBody>
     </StErrorNoti>
   );

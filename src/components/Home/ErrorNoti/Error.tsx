@@ -1,17 +1,27 @@
 import styled from '@emotion/styled';
+import { useRouter } from 'next/router';
 
 interface IProps {
   error: IErrorNotice;
 }
 
 const Error = ({ error }: IProps) => {
-  const { error_msg, format_date, k_map_name, risk_degree } = error;
+  const router = useRouter();
 
-  const errorDate = format_date.split(' ')[0];
-  const errorTime = format_date.split(' ')[1] + format_date.split(' ')[2];
+  const { error_msg, created_at, k_map_name, risk_degree, error_id } = error;
+
+  const errorDate = created_at.split(' ')[0];
+  const errorTime = created_at.split(' ')[1];
+
+  const pageHandler = (errorId: string) => {
+    router.push(`/error/${errorId}`);
+  };
 
   return (
-    <StError>
+    <StError
+      onClick={() => {
+        pageHandler(error_id);
+      }}>
       <StTime>
         <StTimeText>{errorDate}</StTimeText>
         <StTimeText>{errorTime}</StTimeText>
@@ -38,7 +48,7 @@ const StError = styled.div`
 `;
 
 const StTime = styled.div`
-  width: fit-content;
+  width: 5.2083vw;
 `;
 
 const StTimeText = styled.p`

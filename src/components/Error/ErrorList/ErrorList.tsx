@@ -4,12 +4,18 @@ import Dropdown from '../../common/Dropdown/Dropdown';
 import Calendar from '../../common/Calendar/Calendar';
 import Error from './Error';
 
+import Spinner from '@src/components/common/Spinner';
+
 interface IProps {
   stores: IResponse;
-  errors: any;
+  errorList: IErrorNotice[];
+
+  isLoading: boolean;
+  handleClickDateInfo: (arg: any) => void;
+  mapIdHandler: (arg1: string, arg2: string) => void;
 }
 
-const ErrorList = ({ stores, errors }: IProps) => {
+const ErrorList = ({ stores, errorList, isLoading, handleClickDateInfo, mapIdHandler }: IProps) => {
   const date = new Date();
   const year = date.getFullYear();
   const month = date.getMonth();
@@ -18,18 +24,12 @@ const ErrorList = ({ stores, errors }: IProps) => {
   const [startDate, setStartDate] = useState<Date>(new Date(year, month, day - 6));
   const [endDate, setEndDate] = useState<Date>(new Date());
 
-  console.log(errors);
-
-  const pageHandler = () => {
-    console.log(stores);
-  };
-
   return (
     <StErrorList>
       <StHeader>
-        <Dropdown type="store" dataList={stores.stores} event={pageHandler} />
+        <Dropdown type="store" dataList={stores.stores} event={mapIdHandler} />
         <Calendar
-          event={pageHandler}
+          event={handleClickDateInfo}
           startDate={startDate}
           setStartDate={setStartDate}
           endDate={endDate}
@@ -37,9 +37,13 @@ const ErrorList = ({ stores, errors }: IProps) => {
         />
       </StHeader>
       <StBody>
-        {errors.error_notice.map((defaultError: any) => (
-          <Error key={defaultError.error_id} {...defaultError} />
-        ))}
+        {isLoading ? (
+          <Spinner />
+        ) : errorList.length === 0 ? (
+          <StNull>해당 조건에 맞는 에러가 존재하지 않습니다 :(</StNull>
+        ) : (
+          errorList.map((error: any) => <Error key={error.error_id} {...error} />)
+        )}
       </StBody>
     </StErrorList>
   );
@@ -63,6 +67,7 @@ const StHeader = styled.div`
 `;
 
 const StBody = styled.div`
+  position: relative;
   margin-top: 1vw;
   padding: 1vw;
   width: 100%;
@@ -71,6 +76,15 @@ const StBody = styled.div`
   border-radius: 0.2604vw;
   box-shadow: rgba(99, 99, 99, 0.2) 0vw 0.1042vw 0.4167vw 0vw;
   overflow: scroll;
+`;
+
+const StNull = styled.p`
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: ${({ theme }) => theme.color.gray700};
+  font-size: 15px;
 `;
 
 export default ErrorList;

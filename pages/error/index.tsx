@@ -1,9 +1,12 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import styled from '@emotion/styled';
 import ErrorList from '@src/components/Error/ErrorList/ErrorList';
 import storesAPI from '@src/api/stores';
 import errorAPI from '@src/api/error';
+import { useRecoilState } from 'recoil';
+import { errorsState } from '@src/store/errorsState';
+import { useMutation } from 'react-query';
 
 export async function getStaticProps() {
   const stores = await storesAPI.getStores();
@@ -24,11 +27,44 @@ interface IProps {
 }
 
 const Error = ({ stores, errors }: IProps) => {
+  const [errorList, setErrorList] = useRecoilState<IErrorNotice[]>(errorsState);
+  const [mapId, setMapId] = useState<number>(0);
+
+  useEffect(() => {
+    setErrorList(errors.error_notice);
+  }, []);
+
+  const mapIdHandler = (mapName: string, mapId: string) => {
+    setMapId(Number(mapId));
+  };
+
+  const { mutate, data, isLoading } = useMutation((data: any) => errorAPI.postErrorDates(data), {
+    onSuccess: (data) => {
+      setErrorList(data.error_notice);
+    },
+  });
+
+  const handleClickDateInfo = (dates: any) => {
+    if (mapId === 0) {
+      return window.alert('검색하실 매장을 선택해주세요');
+    }
+
+    const data = { ...dates, map_id: mapId };
+
+    mutate(data);
+  };
+
   return (
     <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
       <StError>
         <StBody>
-          <ErrorList stores={stores} errors={errors} />
+          <ErrorList
+            stores={stores}
+            errorList={errorList}
+            isLoading={isLoading}
+            handleClickDateInfo={handleClickDateInfo}
+            mapIdHandler={mapIdHandler}
+          />
           <StErrorTypeChart>에러 타입 차트</StErrorTypeChart>
           <StGuideChart>가이드 이탈</StGuideChart>
           <StOverDriveChart>오버 드라이브</StOverDriveChart>

@@ -38,10 +38,10 @@ interface IProps {
 }
 
 const Home = ({ serving, stores, errorStatus, allErrors }: IProps) => {
-  const [errors, setErrors] = useRecoilState(errorsState);
+  const [errorList, setErrorList] = useRecoilState(errorsState);
 
   useEffect(() => {
-    setErrors(allErrors.error_notice);
+    setErrorList(allErrors.error_notice);
   }, []);
 
   return (
@@ -50,7 +50,7 @@ const Home = ({ serving, stores, errorStatus, allErrors }: IProps) => {
         <Statistics serving={serving.all} />
         <AllStores stores={stores.stores} />
         <KakaoMap stores={stores.stores} />
-        <ErrorNoti errors={errors} setErrors={setErrors} />
+        <ErrorNoti errorList={errorList} setErrorList={setErrorList} />
         <ErrorStatus errorStatus={errorStatus.all} />
       </StHome>
     </motion.div>
