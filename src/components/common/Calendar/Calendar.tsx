@@ -52,7 +52,7 @@ const Calendar = ({ event, startDate, setStartDate, endDate, setEndDate }: IProp
 
 const StCalendar = styled.div`
   display: flex;
-  width: fit-content;
+  width: 100%;
 `;
 
 const StCustomDatePicker = styled(DatePicker)`

@@ -40,7 +40,7 @@ const StDot = styled.div`
     border-radius: 50%;
   }
 
-  :nth-child(1) {
+  :nth-of-type(1) {
     bottom: 5%;
     left: 0;
     transform: rotate(60deg);
@@ -54,7 +54,7 @@ const StDot = styled.div`
     }
   }
 
-  :nth-child(2) {
+  :nth-of-type(2) {
     bottom: 5%;
     right: 0;
     transform: rotate(-60deg);
@@ -67,7 +67,7 @@ const StDot = styled.div`
     }
   }
 
-  :nth-child(3) {
+  :nth-of-type(3) {
     bottom: -5%;
     left: 0;
     transform: translateX(116.666%);
