@@ -2,8 +2,8 @@ import client from './client';
 import API from './apis';
 
 const errorAPI = {
-  getDefailtErrorLists: () => {
-    return client.get(`${API.getDefaultErrorLists}`);
+  getErrorList: () => {
+    return client.get(`${API.getErrorList}`);
   },
   postErrorDates: (data: any) => {
     return client.post(`${API.postErrorDates}`, data);

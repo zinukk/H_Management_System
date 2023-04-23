@@ -7,11 +7,13 @@ import errorAPI from '@src/api/error';
 import { useRecoilState } from 'recoil';
 import { errorsState } from '@src/store/errorsState';
 import { useMutation } from 'react-query';
+import { IErrorList } from '@src/types/error';
+import LineBarChart from '@src/components/common/LineBarChart/LineBarChart';
 
 export async function getStaticProps() {
   const stores = await storesAPI.getStores();
 
-  const errors = await errorAPI.getDefailtErrorLists();
+  const errors = await errorAPI.getErrorList();
 
   return {
     props: {
@@ -23,11 +25,11 @@ export async function getStaticProps() {
 
 interface IProps {
   stores: IResponse;
-  errors: any;
+  errors: IErrorList;
 }
 
 const Error = ({ stores, errors }: IProps) => {
-  const [errorList, setErrorList] = useRecoilState<IErrorNotice[]>(errorsState);
+  const [errorList, setErrorList] = useRecoilState(errorsState);
   const [mapId, setMapId] = useState<number>(0);
 
   useEffect(() => {
@@ -53,6 +55,8 @@ const Error = ({ stores, errors }: IProps) => {
 
     mutate(data);
   };
+
+  console.log(errors);
 
   return (
     <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
