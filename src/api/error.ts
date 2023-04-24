@@ -1,5 +1,6 @@
 import client from './client';
 import API from './apis';
+import { IErrorMsg } from '@src/types/error';
 
 const errorAPI = {
   getErrorList: () => {
@@ -7,6 +8,9 @@ const errorAPI = {
   },
   postErrorDates: (data: any) => {
     return client.post(`${API.postErrorDates}`, data);
+  },
+  postErrorDetail: (data: IErrorMsg) => {
+    return client.post(`${API.postErrorDetail}`, data);
   },
 };
 

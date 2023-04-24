@@ -1,5 +1,7 @@
 import styled from '@emotion/styled';
+import { errorState } from '@src/store/errorState';
 import { useRouter } from 'next/router';
+import { useSetRecoilState } from 'recoil';
 
 interface IProps {
   created_at: string;
@@ -9,18 +11,25 @@ interface IProps {
   error_type: string;
   map_id: string;
   robot_id: string;
+  errorId?: string;
 }
 
-const Error = ({ created_at, current_node, error_id, error_msg, error_type, map_id, robot_id }: IProps) => {
+const Error = ({ created_at, current_node, error_id, error_msg, error_type, map_id, robot_id, errorId }: IProps) => {
   const router = useRouter();
+
+  const setErrorState = useSetRecoilState(errorState);
 
   const pageHandler = (errorId: string) => {
     router.push(`/error/${errorId}`);
   };
 
+  const errorMsg = { created_at, error_id, error_type, map_id, robot_id };
+
   return (
     <StError
+      isSame={errorId === error_id}
       onClick={() => {
+        setErrorState(errorMsg);
         pageHandler(error_id);
       }}>
       <StHeader>
@@ -39,17 +48,17 @@ const Error = ({ created_at, current_node, error_id, error_msg, error_type, map_
   );
 };
 
-const StError = styled.div`
+const StError = styled.div<{ isSame: boolean }>`
   margin-bottom: 1vw;
   padding: 1vw;
   width: 100%;
-  background: ${({ theme }) => theme.color.white};
+  background: ${({ theme, isSame }) => (isSame ? theme.color.gray200 : theme.color.white)};
   border-radius: 0.2604vw;
   box-shadow: rgba(99, 99, 99, 0.2) 0vw 0.1042vw 0.4167vw 0vw;
   cursor: pointer;
 
   :hover {
-    background: ${({ theme }) => theme.color.gray100};
+    background: ${({ theme, isSame }) => (isSame ? theme.color.gray200 : theme.color.gray100)};
   }
 `;
 

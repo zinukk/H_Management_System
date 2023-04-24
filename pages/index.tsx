@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 import { motion } from 'framer-motion';
-import { errorsState } from '@src/store/errorsState';
+import { errorListState } from '@src/store/errorListState';
 import { useEffect } from 'react';
 import { useRecoilState } from 'recoil';
 import homeAPI from '@src/api/home';
@@ -38,7 +38,7 @@ interface IProps {
 }
 
 const Home = ({ serving, stores, errorStatus, allErrors }: IProps) => {
-  const [errorList, setErrorList] = useRecoilState(errorsState);
+  const [errorList, setErrorList] = useRecoilState(errorListState);
 
   useEffect(() => {
     setErrorList(allErrors.error_notice);

@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 import React, { useState } from 'react';
-import Dropdown from '../../common/Dropdown/Dropdown';
-import Calendar from '../../common/Calendar/Calendar';
+import Dropdown from '../common/Dropdown/Dropdown';
+import Calendar from '../common/Calendar/Calendar';
 import Error from './Error';
 
 import Spinner from '@src/components/common/Spinner';
@@ -9,13 +9,13 @@ import Spinner from '@src/components/common/Spinner';
 interface IProps {
   stores: IResponse;
   errorList: IErrorNotice[];
-
   isLoading: boolean;
   handleClickDateInfo: (arg: any) => void;
   mapIdHandler: (arg1: string, arg2: string) => void;
+  errorId?: string | string[] | undefined;
 }
 
-const ErrorList = ({ stores, errorList, isLoading, handleClickDateInfo, mapIdHandler }: IProps) => {
+const ErrorList = ({ stores, errorList, isLoading, handleClickDateInfo, mapIdHandler, errorId }: IProps) => {
   const date = new Date();
   const year = date.getFullYear();
   const month = date.getMonth();
@@ -40,9 +40,9 @@ const ErrorList = ({ stores, errorList, isLoading, handleClickDateInfo, mapIdHan
         {isLoading ? (
           <Spinner />
         ) : errorList.length === 0 ? (
-          <StNull>해당 조건에 맞는 에러가 존재하지 않습니다 :(</StNull>
+          <StNull>해당 조건에 맞는 에러가 존재하지 않습니다:(</StNull>
         ) : (
-          errorList.map((error: any) => <Error key={error.error_id} {...error} />)
+          errorList.map((error: any) => <Error key={error.error_id} {...error} errorId={errorId} />)
         )}
       </StBody>
     </StErrorList>
