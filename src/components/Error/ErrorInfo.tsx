@@ -6,7 +6,6 @@ interface IProps {
 }
 
 const ErrorInfo = ({ errorCount }: IProps) => {
-  console.log(errorCount);
   return (
     <StErrorInfo>
       <StHeader>에러 정보</StHeader>
