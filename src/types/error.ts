@@ -72,3 +72,9 @@ export type IErrorInfo = {
   recent_table: string;
   robot_path: string;
 };
+
+export type IErrorRecentList = {
+  created_at: string;
+  error_id: string;
+  error_type: string;
+};

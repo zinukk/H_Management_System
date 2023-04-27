@@ -8,7 +8,6 @@ const ErrorInfo = () => {
 const StErrorInfo = styled.div`
   padding: 1vw;
   width: 100%;
-  display: grid;
   grid-area: 1 / 7 / 2 / 9;
   background: ${({ theme }) => theme.color.white};
   border-radius: 0.2604vw;
