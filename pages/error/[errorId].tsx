@@ -1,3 +1,4 @@
+import React, { useEffect, useState } from 'react';
 import styled from '@emotion/styled';
 import errorAPI from '@src/api/error';
 import storesAPI from '@src/api/stores';
@@ -12,7 +13,6 @@ import { errorListState } from '@src/store/errorListState';
 import { errorState } from '@src/store/errorState';
 import { IErrorMsg } from '@src/types/error';
 import { useRouter } from 'next/router';
-import React, { useEffect, useState } from 'react';
 import { useMutation } from 'react-query';
 import { useRecoilState, useRecoilValue } from 'recoil';
 
@@ -39,7 +39,10 @@ const ErrorDetail = ({ stores, errors }: IProps) => {
   const [errorList, setErrorList] = useRecoilState(errorListState);
   const [mapId, setMapId] = useState<number>(0);
   const [errorDetail, setErrorDetail] = useState({});
+  const error = useRecoilValue(errorState);
   const errorMsg = useRecoilValue(errorState);
+
+  console.log(errorMsg);
 
   const mapIdHandler = (mapName: string, mapId: string) => {
     setMapId(Number(mapId));
@@ -62,7 +65,7 @@ const ErrorDetail = ({ stores, errors }: IProps) => {
 
   useEffect(() => {
     postErrorMsg(errorMsg);
-  }, []);
+  }, [query.errorId]);
 
   const handleClickDateInfo = (dates: any) => {
     if (mapId === 0) {
@@ -84,7 +87,7 @@ const ErrorDetail = ({ stores, errors }: IProps) => {
         mapIdHandler={mapIdHandler}
         errorId={query.errorId}
       />
-      <ErrorStatus />
+      <ErrorStatus errorInfo={errorDetail && errorDetail.error_info} />
       <ErrorRecentList />
       <ErrorInfo />
       <ServingInfo />

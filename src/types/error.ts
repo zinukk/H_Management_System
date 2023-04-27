@@ -65,3 +65,10 @@ export type IErrorMsg = {
   map_id: string;
   robot_id: string;
 };
+
+export type IErrorInfo = {
+  battery: string;
+  map_existence: string;
+  recent_table: string;
+  robot_path: string;
+};
