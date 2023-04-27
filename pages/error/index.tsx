@@ -1,14 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import styled from '@emotion/styled';
-import ErrorList from '@src/components/Error/ErrorList/ErrorList';
+import ErrorList from '@src/components/Error/ErrorList';
 import storesAPI from '@src/api/stores';
 import errorAPI from '@src/api/error';
 import { useRecoilState } from 'recoil';
-import { errorsState } from '@src/store/errorsState';
+import { errorListState } from '@src/store/errorListState';
 import { useMutation } from 'react-query';
 import { IErrorList } from '@src/types/error';
-import LineBarChart from '@src/components/common/LineBarChart/LineBarChart';
 
 export async function getStaticProps() {
   const stores = await storesAPI.getStores();
@@ -29,7 +28,7 @@ interface IProps {
 }
 
 const Error = ({ stores, errors }: IProps) => {
-  const [errorList, setErrorList] = useRecoilState(errorsState);
+  const [errorList, setErrorList] = useRecoilState(errorListState);
   const [mapId, setMapId] = useState<number>(0);
 
   useEffect(() => {

@@ -57,3 +57,11 @@ export type IErrorList = {
   sleep_long: null | IObj;
   under_voltage: null | IObj;
 };
+
+export type IErrorMsg = {
+  created_at: string;
+  error_id: string;
+  error_type: string;
+  map_id: string;
+  robot_id: string;
+};

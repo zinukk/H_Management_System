@@ -1,0 +1,18 @@
+import styled from '@emotion/styled';
+import React from 'react';
+
+const ServingInfo = () => {
+  return <StServingInfo>서빙 인포</StServingInfo>;
+};
+
+const StServingInfo = styled.div`
+  padding: 1vw;
+  width: 100%;
+  display: grid;
+  grid-area: 2 / 7 / 3 / 9;
+  background: ${({ theme }) => theme.color.white};
+  border-radius: 0.2604vw;
+  box-shadow: rgba(99, 99, 99, 0.2) 0vw 0.1042vw 0.4167vw 0vw;
+`;
+
+export default ServingInfo;
