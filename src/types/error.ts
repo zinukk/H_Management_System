@@ -78,3 +78,10 @@ export type IErrorRecentList = {
   error_id: string;
   error_type: string;
 };
+
+export type ICount = {
+  month_error_count: string;
+  month_serving_count: string;
+  week_error_count: string;
+  week_serving_count: string;
+};
