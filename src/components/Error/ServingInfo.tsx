@@ -8,7 +8,6 @@ const ServingInfo = () => {
 const StServingInfo = styled.div`
   padding: 1vw;
   width: 100%;
-  display: grid;
   grid-area: 2 / 7 / 3 / 9;
   background: ${({ theme }) => theme.color.white};
   border-radius: 0.2604vw;

@@ -77,6 +77,8 @@ const ErrorDetail = ({ stores, errors }: IProps) => {
     postDates(data);
   };
 
+  console.log(errorDetail);
+
   return (
     <StErrorDetail>
       <ErrorList
@@ -88,7 +90,7 @@ const ErrorDetail = ({ stores, errors }: IProps) => {
         errorId={query.errorId}
       />
       <ErrorStatus errorInfo={errorDetail && errorDetail.error_info} />
-      <ErrorRecentList />
+      <ErrorRecentList errorRecentList={errorDetail && errorDetail.error_list} />
       <ErrorInfo />
       <ServingInfo />
       <ErrorSolution />

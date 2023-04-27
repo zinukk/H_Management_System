@@ -33,7 +33,6 @@ const ErrorStatus = ({ errorInfo }: IProps) => {
 const StErrorStatus = styled.div`
   padding: 1vw;
   width: 100%;
-  display: grid;
   grid-area: 1 / 3 / 5 / 5;
   background: ${({ theme }) => theme.color.white};
   border-radius: 0.2604vw;
@@ -51,7 +50,6 @@ const StHeader = styled.p`
 
 const StBody = styled.div`
   width: 100%;
-  height: 80vh;
   word-wrap: break-word;
   overflow: auto;
 `;

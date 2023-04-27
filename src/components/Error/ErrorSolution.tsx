@@ -8,7 +8,6 @@ const ErrorSolution = () => {
 const StErrorSolution = styled.div`
   padding: 1vw;
   width: 100%;
-  display: grid;
   grid-area: 3 / 5 / 5 / 7;
   background: ${({ theme }) => theme.color.white};
   border-radius: 0.2604vw;
