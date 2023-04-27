@@ -91,7 +91,7 @@ const ErrorDetail = ({ stores, errors }: IProps) => {
       />
       <ErrorStatus errorInfo={errorDetail && errorDetail.error_info} />
       <ErrorRecentList errorRecentList={errorDetail && errorDetail.error_list} />
-      <ErrorInfo />
+      <ErrorInfo errorCount={errorDetail && errorDetail.error_count} />
       <ServingInfo />
       <ErrorSolution />
       <ErrorResolveList />
